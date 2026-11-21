@@ -1,5 +1,6 @@
 """
-CYCLER: switches between strategies, keeping whichever one is winning.
+GO_CAT (team entry; the "cycler" strategy): switches between strategies,
+keeping whichever one is winning.
 
 Every exploit leaves you open to a counter-exploit, and the counter to any
 counter is to go back toward equilibrium. The modes follow that cycle:
