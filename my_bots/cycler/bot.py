@@ -4,7 +4,7 @@ CYCLER: rotates through strategies, keeping whichever one is winning.
 Every exploit leaves you open to a counter-exploit, and the counter to any
 counter is to go back toward equilibrium. This bot plays that cycle:
 
-    gto -> exploit -> pressure -> value -> bluff_catch -> gto -> ...
+    exploit -> pressure -> value -> bluff_catch -> gto -> exploit -> ...
 
 It credits each hand's result (in big blinds) to the mode that played it. If the
 active mode has lost more than SWITCH_BELOW_BB over the last WINDOW hands, it
@@ -22,7 +22,7 @@ match it plays more conservatively to protect the lead, behind it takes more
 risk to get back into it (see RISK_* below).
 
 Every decision is held to THINK_LIMIT (200 ms); a decision that runs long
-finishes with the main strategy (gto).
+finishes with the main strategy (exploit, the default mode).
 """
 
 import os
@@ -384,21 +384,26 @@ def bet_pot_frac(gs, c, frac):
 # it keeps rotating for as long as nothing sticks.
 #
 # The order follows the exploit / counter-exploit cycle:
-#   gto          balanced baseline, ignores the opponent (safe default)
-#   exploit      best response to the opponent's measured frequencies
+#   exploit      DEFAULT. Best response to the opponent's measured frequencies
+#                (beats counter_nash, which is itself an exploiter)
 #   pressure     vs over-folders: bluff more, bet bigger
 #   value        vs calling stations: value-bet thin and big, never bluff
 #   bluff_catch  vs over-aggressive bots: believe their bets less, call down
 #                lighter, trap strong hands by checking
-# ...and then back to gto, the counter to whatever counter they found.
+#   gto          balanced own play: fold-equity guesses from equilibrium,
+#                not from the opponent (the counter to whatever counter they found)
+# ...and then back to exploit.
+# Every mode reads the opponent's *ranges* from what it has observed (how wide
+# they open, re-raise and shove), so none of them keeps folding to a bot that
+# shoves far wider than equilibrium.
 from collections import defaultdict
 
 MODES = [
-    dict(name="gto",         use_model=False, fe_mult=1.00, bluff_keep=0.30, sizes=(0.33, 0.66, 1.0),  bluffs=True,  trap=0.00),
     dict(name="exploit",     use_model=True,  fe_mult=1.00, bluff_keep=None, sizes=(0.33, 0.66, 1.0),  bluffs=True,  trap=0.00),
     dict(name="pressure",    use_model=True,  fe_mult=1.30, bluff_keep=0.30, sizes=(0.5, 0.75, 1.25),  bluffs=True,  trap=0.00),
     dict(name="value",       use_model=True,  fe_mult=0.50, bluff_keep=0.30, sizes=(0.66, 1.0, 1.5),   bluffs=False, trap=0.00),
     dict(name="bluff_catch", use_model=True,  fe_mult=0.80, bluff_keep=0.65, sizes=(0.33, 0.66),       bluffs=False, trap=0.35),
+    dict(name="gto",         use_model=False, fe_mult=1.00, bluff_keep=0.30, sizes=(0.33, 0.66, 1.0),  bluffs=True,  trap=0.00),
 ]
 WINDOW = 15               # hands a mode is judged over (rolling)
 SWITCH_BELOW_BB = -8.0    # switch when the last WINDOW hands lost more than this many big blinds
@@ -527,6 +532,8 @@ def _process_hand(ents, me, short):
                     pending += "_short" if short else "_deep"
             else:
                 pending = "bet"
+        elif street == "preflop" and first and a == "call" and e["bot_id"] == sb:
+            pending = "limp"                          # we limped: does the BB punish it?
         if street == "preflop":
             first = False
             if aggr:
@@ -535,13 +542,17 @@ def _process_hand(ents, me, short):
 
 # ---- per-mode ingredients -------------------------------------------------------
 def _opp_range(c, gs, mode):
+    """The opponent's range, with each line's width taken from what they've
+    actually done (all modes: defending against their real ranges is never a
+    mistake, however the mode chooses to attack)."""
     push, _ = pushfold_nash(c.eff_bb, c.ante / c.bb)
-    if not mode["use_model"]:
-        return opp_preflop_range(c, gs, push_range=push if c.eff_bb <= 15 else None)
     push_range = top_range(est("sb_jam_short", range_share(push))) if c.eff_bb <= PUSH_FOLD_BB else None
-    f_open = est("sb_open_deep", 0.80)
-    f_3bet = max(0.03, (1 - est("open_fold", 0.35)) * est("open_raise", 0.18))
-    return opp_preflop_range(c, gs, f_open=max(f_open, 0.05), f_3bet=f_3bet,
+    f_open = max(est("sb_open_deep", 0.80), 0.05)
+    # share of ALL their hands that re-raise us, per spot
+    f_3bet = min(max(est("open_raise", 0.15), 0.03), 0.95)            # BB vs our open
+    f_iso = min(max(est("limp_raise", 0.35), 0.05), 0.95)             # BB vs our limp
+    f_4bet = min(max(f_open * est("3bet_raise", 0.09), 0.02), 0.9)    # SB vs our 3-bet
+    return opp_preflop_range(c, gs, f_open=f_open, f_iso=f_iso, f_3bet=f_3bet, f_4bet=f_4bet,
                              f_call_open=max(0.1, 1 - est("open_fold", 0.35)), push_range=push_range)
 
 
@@ -571,7 +582,7 @@ def candidate_raises(gs, c, mode, behind=False):
     out = []
     if c.street == "preflop":
         out += [2.5 * bb, 3.5 * bb] if gs["current_bet"] <= bb else [gs["current_bet"] * 3]
-        if c.eff_bb <= 25 or gs["current_bet"] >= 0.25 * c.eff or behind:   # behind: shoving is an option
+        if c.eff_bb <= 25 or gs["current_bet"] >= 0.25 * c.eff or (behind and c.eff_bb <= 40):
             out.append(c.my_max)
     else:
         out += [bet_pot_frac(gs, c, f) for f in mode["sizes"]]
@@ -602,7 +613,7 @@ def decide(game_state: dict) -> dict:
 
 # Thinking budget. The tournament allows 2 s, but this bot holds itself to
 # THINK_LIMIT. If a decision runs long, it drops the active mode and finishes
-# with the main strategy (gto) instead.
+# with the main strategy (exploit, the default mode) instead.
 THINK_LIMIT = 0.200       # seconds per decision
 MAIN = MODES[0]           # the main strategy to fall back to
 FALLBACKS = 0             # how many decisions fell back this match
@@ -665,6 +676,10 @@ def _decide(gs, t0):
         evs["fold"] = 0.0
         all_in_call = owed >= gs["your_stack"] or c.opp_stack == 0
         evs["call"] = eq * (pot + owed) * (1.0 if all_in_call else realize) - owed
+        if c.street == "preflop" and c.button and not c.pf:
+            # A limp only sees a flop if the BB lets it; when they raise, count it as lost.
+            p_raised = est("limp_raise", 0.35)
+            evs["call"] = (1 - p_raised) * evs["call"] - p_raised * owed
         evs["call"] -= risk * owed
 
     if c.can_raise:
