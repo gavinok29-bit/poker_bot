@@ -371,10 +371,10 @@ PUSH_FOLD_BB = 12          # at or below this effective stack, play push/fold Na
 
 
 # Hard limit: 200 ms per decision (the tournament allows 2 s). The Monte Carlo
-# simulation gets what's left of 40% of it, which leaves room for slow
+# simulation gets what's left of 35% of it, which leaves room for slow
 # machines, the half-core sandbox and everything else the bot does.
 THINK_LIMIT = 0.200
-MC_SHARE = 0.40
+MC_SHARE = 0.35
 _T0 = [0.0]
 
 
