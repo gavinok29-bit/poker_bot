@@ -23,7 +23,14 @@ margin per extra chip risked (the EVs are estimates), or it just calls.
 It also reads how honest the opponent is: if their big bets keep winning at
 showdown, it believes their bets more (folds medium hands to them), counts only
 the folds they've actually shown to big bets as fold equity, rules out pressure
-and bluff_catch, and doesn't jam deep stacks into small pots. The active mode and its running total are
+and bluff_catch, and doesn't jam deep stacks into small pots.
+
+Against a bot that goes all-in preflop almost every hand (4+ hands seen, 80%+
+of them all-in) it stops modelling and just waits: it gets its chips in only
+with a hand that is a big favourite against a random hand (88+ or AK when
+deep), widening as stacks shrink (down to 52% equity at 15 big blinds), and
+folds everything else. Before it has seen enough to tell, a deep preflop shove
+(40+ big blinds) must clear that same bar as well as its normal model. The active mode and its running total are
 in every decision's "debug".
 
 All modes share one engine: Monte Carlo equity against the opponent's range,
@@ -614,6 +621,7 @@ def _process_hand(hn, ents, me, short):
     opp_aggr = opp_acts = 0
     pot, sbet = 0, {}
     opp_big, opp_shown = False, False
+    opp_pf_first = True
     for e in ents:
         a, who, amt = e["action"], e.get("bot_id"), e.get("amount", 0) or 0
         if a == "show":
@@ -648,6 +656,9 @@ def _process_hand(hn, ents, me, short):
                 _rec(p + "_fold", a == "fold")
                 _rec(p + "_raise", aggr)
             pending = []
+            if street == "preflop" and opp_pf_first:     # their first preflop decision this hand
+                _rec("opp_pf_jam", a == "all_in")
+                opp_pf_first = False
             if street == "preflop" and first and e["bot_id"] == sb:
                 tag = "short" if short else "deep"
                 _rec("sb_open_" + tag, aggr)
@@ -830,6 +841,50 @@ def _opp_reraises(c):
     return n
 
 
+# ---- always-all-in opponents ------------------------------------------------------
+# Against a bot that shoves (almost) every hand, its range is (almost) any two
+# cards, and every call puts the match on one hand. Folding costs a blind; a
+# call with a 52% hand is a coin flip for the whole match. So: wait for a hand
+# that is a big favourite against a random hand, and widen only as stacks get
+# short relative to the blinds (when waiting gets expensive).
+SHOVER_MIN_HANDS = 4      # their first preflop decisions seen before deciding
+SHOVER_RATE = 0.8         # share of those that were all-in
+SHOVE_CALL_DEEP = 0.66    # equity vs a random hand needed at 100+ big blinds (88+, AK)
+SHOVE_CALL_SHORT = 0.52   # ... and at 15 big blinds or less
+
+
+def is_shover():
+    hits, n = STATS["opp_pf_jam"]
+    return n >= SHOVER_MIN_HANDS and hits >= SHOVER_RATE * n
+
+
+SHOVE_GUARD_BB = 40       # before any reads, deep shoves (this many bb+) must also clear the bar
+
+
+def early_deep_shove(c):
+    """They shoved preflop, stacks are deep, and we haven't seen enough of
+    their preflop play to know whether they shove everything. Until we do, a
+    call must clear the anti-shove bar as well as the normal model."""
+    jammed = any(e["bot_id"] != c.me and e["action"] == "all_in" for e in c.pf)
+    return jammed and c.eff_bb >= SHOVE_GUARD_BB and STATS["opp_pf_jam"][1] < SHOVER_MIN_HANDS
+
+
+def shove_call_threshold(eff_bb):
+    t = min(max((eff_bb - 15) / 85, 0.0), 1.0)
+    return SHOVE_CALL_SHORT + (SHOVE_CALL_DEEP - SHOVE_CALL_SHORT) * t
+
+
+def anti_shove(gs, c, tag):
+    eq = float(EQ_RANDOM[c.cls])
+    need = shove_call_threshold(c.eff_bb)
+    dbg = {**tag, "anti_shove": 1, "eq_vs_random": round(eq, 3), "need": round(need, 3)}
+    if eq >= need:
+        return {"action": "all_in", "debug": dbg}     # call their shove, or get it in first
+    if gs["can_check"]:
+        return {"action": "check", "debug": dbg}
+    return {"action": "fold", "debug": dbg}
+
+
 def _decide(gs, t0):
     global FALLBACKS
     c = context(gs)
@@ -848,6 +903,14 @@ def _decide(gs, t0):
     fell_back = False
     if mode is not MAIN and _elapsed(t0) > 0.4 * THINK_LIMIT:   # already slow: go straight to main
         mode, fell_back = MAIN, True
+
+    if c.street == "preflop" and is_shover():
+        return anti_shove(gs, c, tag)
+    if c.street == "preflop" and owed > 0 and early_deep_shove(c):
+        eq_r, need = float(EQ_RANDOM[c.cls]), shove_call_threshold(c.eff_bb)
+        if eq_r < need:              # too weak to risk the match on before we know them
+            return {"action": "fold", "debug": {**tag, "early_shove_guard": 1,
+                                                "eq_vs_random": round(eq_r, 3), "need": round(need, 3)}}
 
     # Short-stack, first in from the SB: Nash push/fold in gto mode, best response otherwise
     if c.street == "preflop" and c.eff_bb <= PUSH_FOLD_BB and not c.pf and c.button:
