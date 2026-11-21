@@ -1,0 +1,6 @@
+opponent                                old W/D/L  new W/D/L
+opponents/acpc_style_aggr                   3/5/2      1/7/2
+opponents/acpc_style_mid                    5/4/1      1/6/3
+opponents/acpc_style_passive                3/7/0      2/5/3
+
+Shared pairs: 30   old score 19.0   new score 13.0   difference -6.0

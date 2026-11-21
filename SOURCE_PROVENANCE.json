@@ -1,0 +1,33 @@
+{
+  "source": "https://github.com/gavinok29-bit/poker_bot",
+  "ref": "main",
+  "read_at": "2026-11-21 around 11:18 America/Toronto",
+  "kind": "source snapshot, not a Git history clone",
+  "upstream_comparison": "All 23 exported files matched the official kit source at this check.",
+  "official_url": "https://github.com/FreddyyAndrews/poker-hackathon-kit",
+  "files": {
+    ".kit-files": "94da2df4159b0a3f52af66fc86b0c320426124b812db38b40e670fa77844b06c",
+    ".gitignore": "445f000118a63a33514e6d5f694a0ddb8fc10a161b879925baa70ed000189963",
+    "CORE_VERSION": "f18ac9da9f3b29386e343ae9ae06bbb299a53aae06b48c034d674e34bbec50e0",
+    "LICENSE": "49d3aeafa19509a82d4af843ebefba80bfa9d5fb48238b56c5216ea306a22579",
+    "Makefile": "9e85880aa11c6ec1db436e32e70c14f10ee289f0acfd693af6a355720f28ba20",
+    "README.md": "7dd8411a9d5858e7d144a7abfd1a6f3e8ce89c1dd9ab2c976f6e6dafccc1b25a",
+    "bots/caller/bot.py": "77c59cbe338ae34c75fcbe0122cd3ee9473d6be582a2e0eb1842b631f004aee2",
+    "bots/template/bot.py": "a72ec8c078ffcef42c0ef08e07df51951483ddc9b2bea6c129b5c6470ae22951",
+    "my_bots/README.md": "350631a889e43f302fb209251802932b192b541a454b8f18cea50bb4ad4e281d",
+    "play.py": "4dbae5602ba72e0b64d26f173b11b78b316d95af1524037118213841bee2a4c8",
+    "pokercore/__init__.py": "9ecd8d2e2d0ceccbfcdccaad8b3e0252470148e9d7600d66e4c66b4f32eceb80",
+    "pokercore/botproc.py": "33315f1a2529be6ebcad8e0e108498e519007903f1cc2b5c85e3077d91b057b0",
+    "pokercore/engine.py": "e37cdb50b54bddd0f516fce5b5bb5798fe4d0e35a52dc143cefc2f5d3940793b",
+    "pokercore/sandbox/Dockerfile": "044b2ab122116231d09c8f32fa8569d136edb750fbc694f7b82e59570249c081",
+    "pokercore/sandbox/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pokercore/sandbox/guard.py": "dc8d847725ed6efaa9ac8e54e09484bc8819651bc6ec0cfe35115a8d3f60add4",
+    "pokercore/sandbox/runner.py": "12f41604c960adbf7f37387aae41beec8917a6f21ad57c258563094b9c105bdd",
+    "pokercore/seats.py": "6309ea2a7470fccf7dde70a46414a2cdc76a680b3278b1c5f508d2eadc0aa0fd",
+    "pokercore/seeds.py": "bc2fa4a593ba42e34d368d808ea350e126ecc69eee583a4de7b86c6ba536b2f4",
+    "pokercore/structures.py": "54522518b93db9af620b1c7c8e418f69e0949cd10a5827d67b14f9c7efe3ea97",
+    "pokercore/table.py": "3c608ebc1f559159c58f12f5699a3413f1641366dd69cd5e8e4fdb8ca8c038e3",
+    "pokercore/validator.py": "329822b2d6bdf3b1e0deed2a6ce52d53a9cc6ec7245831a228e3a3a36a0b7359",
+    "requirements.txt": "8589d036e4f90cd986beabdfa23af50844f7fdc0909327c257a0e8b7957b4147"
+  }
+}

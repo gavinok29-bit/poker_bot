@@ -1,0 +1,10 @@
+
+✅ PASSED  —  my_bots/heads_up_v2
+
+
+Test results:
+  ✓ [0.003s] preflop_call_or_fold: {'action': 'raise', 'amount': 250, 'debug': {'random_hand_equity': 0.643, 'effective_bb': 100.0}}
+  ✓ [0.002s] postflop_can_check: {'action': 'check', 'debug': {'random_hand_equity': 0.531, 'effective_bb': 98.5}}
+  ✓ [0.001s] river_facing_large_bet: {'action': 'fold', 'debug': {'random_hand_equity': 0.442, 'effective_bb': 60.0}}
+  ✓ [0.003s] short_stack_all_in_decision: {'action': 'all_in', 'debug': {'random_hand_equity': 0.761, 'effective_bb': 1.0}}
+

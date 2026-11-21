@@ -1,0 +1,184 @@
+========== OUTPUT: analyze.py ==========
+TOTAL HANDS PARSED: 576000
+STACK SIZES SEEN: {200.0: 1152000}
+
+=== Tartanian7 (288000 hands) ===
+  VPIP 74.2%  PFR 45.7%
+  Button first action: fold 9.8% | limp 14.0% | raise 76.3%
+  Button open sizes: 2.5bb: 40.3%, minraise 2bb: 31.4%, 3bb: 27.1%, 5-10bb: 1.2%
+  BB vs open: fold 27.9% | call 58.5% | 3-bet 13.6%
+  BB vs limp: check 68.1% | raise 31.9%
+  Flop c-bet (as preflop aggressor, no donk): 58.4%  (faced donk 2995 times)
+
+=== Prelude (288000 hands) ===
+  VPIP 75.6%  PFR 44.5%
+  Button first action: fold 9.3% | limp 18.7% | raise 72.0%
+  Button open sizes: minraise 2bb: 49.5%, 3bb: 46.2%, 4bb: 4.3%
+  BB vs open: fold 26.7% | call 58.2% | 3-bet 15.1%
+  BB vs limp: check 61.3% | raise 38.7%
+  Flop c-bet (as preflop aggressor, no donk): 52.3%  (faced donk 2587 times)
+
+=== Hyperborean_iro (288000 hands) ===
+  VPIP 74.3%  PFR 46.6%
+  Button first action: fold 11.2% | limp 14.9% | raise 74.0%
+  Button open sizes: 2.5bb: 70.4%, 3bb: 26.6%, 4bb: 3.0%, 5-10bb: 0.0%
+  BB vs open: fold 28.1% | call 54.6% | 3-bet 17.3%
+  BB vs limp: check 58.8% | raise 41.2%
+  Flop c-bet (as preflop aggressor, no donk): 42.8%  (faced donk 3055 times)
+
+=== Slumbot (288000 hands) ===
+  VPIP 70.7%  PFR 45.2%
+  Button first action: fold 12.4% | limp 11.9% | raise 75.7%
+  Button open sizes: 2.5bb: 36.6%, minraise 2bb: 35.8%, 3bb: 27.6%
+  BB vs open: fold 33.9% | call 53.0% | 3-bet 13.0%
+  BB vs limp: check 68.8% | raise 31.2%
+  Flop c-bet (as preflop aggressor, no donk): 56.2%  (faced donk 1269 times)
+
+
+========== OUTPUT: analyze2.py ==========
+== BUTTON strategy by hand class (all 4 bots pooled, classes with 300+ samples) ==
+hand   fold%  limp% raise%      n
+-- most-folded 25 --
+83o    100.0    0.0    0.0   5592
+72o    100.0    0.0    0.0   5472
+92o    100.0    0.0    0.0   5292
+32o    100.0    0.0    0.0   5220
+93o    100.0    0.0    0.0   5088
+42o    100.0    0.0    0.0   4944
+82o    100.0    0.0    0.0   4896
+62o    100.0    0.0    0.0   4884
+73o     94.1    5.9    0.0   4980
+52o     93.1    6.9    0.0   4884
+T2o     91.7    8.3    0.0   5052
+94o     44.6   54.0    1.3   5088
+T3o     35.7   46.3   18.0   5076
+J2o     32.5   46.0   21.4   5160
+63o      7.7   55.4   36.9   4848
+84o      0.0   74.2   25.8   5148
+Q2o      0.0   58.0   42.0   5580
+T5o      0.0   44.0   56.0   5592
+J3o      0.0   42.3   57.7   5148
+74o      0.0   37.5   62.5   5244
+K2o      0.0   36.9   63.1   5376
+Q3o      0.0   33.6   66.4   5724
+T4o      0.0   29.2   70.8   5304
+T6s      0.0   28.5   71.5   1848
+72s      0.0   27.3   72.7   1884
+-- never/rarely folded (15 lowest fold%) --
+A9s      0.0    0.2   99.8   1872
+QTs      0.0    0.3   99.7   1560
+A5s      0.0    0.4   99.6   1596
+A8s      0.0    0.4   99.6   1560
+QJs      0.0    0.5   99.5   1476
+ATs      0.0    0.6   99.4   1632
+AJs      0.0    0.7   99.3   1932
+K9s      0.0    0.7   99.3   1848
+A4s      0.0    0.8   99.2   1788
+KTs      0.0    0.9   99.1   2112
+J9s      0.0    0.9   99.1   1656
+98s      0.0    0.9   99.1   1584
+T8s      0.0    1.0   99.0   1872
+65s      0.0    1.2   98.8   1848
+76s      0.0    1.3   98.7   1968
+-- most-limped 12 --
+84o      0.0   74.2   25.8   5148
+Q2o      0.0   58.0   42.0   5580
+63o      7.7   55.4   36.9   4848
+94o     44.6   54.0    1.3   5088
+T3o     35.7   46.3   18.0   5076
+J2o     32.5   46.0   21.4   5160
+T5o      0.0   44.0   56.0   5592
+J3o      0.0   42.3   57.7   5148
+74o      0.0   37.5   62.5   5244
+K2o      0.0   36.9   63.1   5376
+Q3o      0.0   33.6   66.4   5724
+T4o      0.0   29.2   70.8   5304
+total button decisions with cards: 576000
+
+== BB vs button open, by hand class (300+ samples) ==
+hand   fold%  call%  3bet%      n
+-- most-folded 20 --
+32o    100.0    0.0    0.0   4636
+82o    100.0    0.0    0.0   4123
+73o    100.0    0.0    0.0   4093
+92o    100.0    0.0    0.0   4076
+42o    100.0    0.0    0.0   3991
+72o    100.0    0.0    0.0   3935
+62o    100.0    0.0    0.0   3916
+94o    100.0    0.0    0.0   3897
+93o    100.0    0.0    0.0   3887
+83o    100.0    0.0    0.0   3835
+52o    100.0    0.0    0.0   3780
+T2o    100.0    0.0    0.0   3732
+84o    100.0    0.0    0.0   3716
+T3o     92.6    7.4    0.0   4189
+63o     92.1    7.9    0.0   3968
+J2o     80.7   19.3    0.0   3976
+T4o     72.7   27.3    0.0   4157
+T5o     70.0   30.0    0.0   3512
+74o     70.0   30.0    0.0   3569
+Q2o     69.2   30.8    0.0   3796
+-- most-3bet 15 --
+KJs      0.0    0.0  100.0   1059
+KQs      0.0    0.0  100.0   1220
+AQs      0.0    0.0  100.0   1322
+AKs      0.0    0.0  100.0   1356
+AJs      0.0    0.0  100.0   1441
+AA       0.0    0.0  100.0   1798
+QQ       0.0    0.0  100.0   1830
+KK       0.0    0.0  100.0   1850
+JJ       0.0    0.0  100.0   2018
+AKo      0.0    0.0  100.0   3844
+ATs      0.0    0.9   99.1   1105
+TT       0.0    3.3   96.7   2021
+76s      0.1    3.4   96.6   1453
+65s      0.0    8.7   91.3   1312
+AQo      0.0   10.1   89.9   4050
+
+========== OUTPUT: audit.py ==========
+== A. DUPLICATE / PERSPECTIVE ACCOUNTING ==
+total hand records parsed: 576000; unique hand IDs: 576000
+  Hyperborean_iro_vs_Prelude-15.txt (6000) vs Prelude_vs_Hyperborean_iro-15.txt (6000): shared IDs=0
+  IDs appearing in more than one record: 0 (max occurrences: 1)
+  blinds seen: {}
+
+== B. PER-BOT, PER-SEAT COUNTS (raw) ==
+bot                hands    btnN   btnR   btnL   btnF btnVPIP%     bbN  bbVPIP% overallVPIP%
+Tartanian7        288000  144000 109826  20090  14084     90.2  144000     58.1         74.2
+   BB vs open n=106533: fold 29726 call 62286 3bet 14521 | BB vs limp n=21709: raise 6922 check 14787 other 0
+Prelude           288000  144000 103736  26938  13326     90.7  144000     60.5         75.6
+   BB vs open n=108402: fold 28929 call 63134 3bet 16339 | BB vs limp n=19591: raise 7578 check 12013 other 0
+Hyperborean_iro   288000  144000 106534  21392  16074     88.8  144000     59.8         74.3
+   BB vs open n=107559: fold 30263 call 58694 3bet 18602 | BB vs limp n=21309: raise 8777 check 12532 other 0
+Slumbot           288000  144000 109020  17073  17907     87.6  144000     53.9         70.7
+   BB vs open n=106622: fold 36187 call 56540 3bet 13895 | BB vs limp n=22884: raise 7133 check 15751 other 0
+
+== C. PER-BOT robustness of claimed ranges ==
+button always-fold classes, per bot (fold/n):
+  83o  Tartanian7:1398/1398  Prelude:1398/1398  Hyperborean:1398/1398  Slumbot:1398/1398
+  72o  Tartanian7:1368/1368  Prelude:1368/1368  Hyperborean:1368/1368  Slumbot:1368/1368
+  92o  Tartanian7:1323/1323  Prelude:1323/1323  Hyperborean:1323/1323  Slumbot:1323/1323
+  32o  Tartanian7:1305/1305  Prelude:1305/1305  Hyperborean:1305/1305  Slumbot:1305/1305
+  93o  Tartanian7:1272/1272  Prelude:1272/1272  Hyperborean:1272/1272  Slumbot:1272/1272
+  42o  Tartanian7:1236/1236  Prelude:1236/1236  Hyperborean:1236/1236  Slumbot:1236/1236
+  82o  Tartanian7:1224/1224  Prelude:1224/1224  Hyperborean:1224/1224  Slumbot:1224/1224
+  62o  Tartanian7:1221/1221  Prelude:1221/1221  Hyperborean:1221/1221  Slumbot:1221/1221
+BB 3-bet classes, per bot (3bet/n):
+  AA   Tartanian7:447/447  Prelude:454/454  Hyperborean:451/451  Slumbot:446/446
+  KK   Tartanian7:465/465  Prelude:461/461  Hyperborean:461/461  Slumbot:463/463
+  AKs  Tartanian7:330/330  Prelude:340/340  Hyperborean:343/343  Slumbot:343/343
+  AKo  Tartanian7:939/939  Prelude:973/973  Hyperborean:968/968  Slumbot:964/964
+  AQs  Tartanian7:328/328  Prelude:334/334  Hyperborean:337/337  Slumbot:323/323
+  76s  Tartanian7:354/358  Prelude:337/360  Hyperborean:366/371  Slumbot:346/364
+  65s  Tartanian7:326/326  Prelude:310/336  Hyperborean:322/322  Slumbot:240/328
+
+== D. MANUAL SPOT CHECKS (3 random hands: raw text vs parsed) ==
+--- hand 117777093764571551 in Slumbot_vs_Prelude-20.txt: button=Prelude, bb=Slumbot
+    parsed preflop actions: [('Prelude', ('raise', 3.0)), ('Slumbot', ('fold', None))]
+    parsed shown cards: {'Slumbot': 'T2o', 'Prelude': 'Q6o'}
+--- hand 117777093764498164 in Prelude_vs_Hyperborean_iro-16.txt: button=Prelude, bb=Hyperborean_iro
+    parsed preflop actions: [('Prelude', ('fold', None))]
+    parsed shown cards: {'Prelude': '72o', 'Hyperborean_iro': '75o'}
+--- hand 117777093764432990 in Slumbot_vs_Tartanian7-13.txt: button=Slumbot, bb=Tartanian7
+    parsed preflop actions: [('Slumbot', ('raise', 3.0)), ('Tartanian7', ('raise', 12.0)), ('Slumbot', ('fold', None))]
+    parsed shown cards: {'Slumbot': '98o', 'Tartanian7': '76s'}

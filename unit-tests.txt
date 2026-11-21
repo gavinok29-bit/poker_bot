@@ -1,0 +1,17 @@
+......................../downloads/heads_up_work/poker_bot_christian/pokercore/botproc.py:387: ResourceWarning: unclosed file <_io.TextIOWrapper name=10 encoding='UTF-8'>
+  self._proc = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/downloads/heads_up_work/poker_bot_christian/pokercore/botproc.py:387: ResourceWarning: unclosed file <_io.TextIOWrapper name=12 encoding='UTF-8'>
+  self._proc = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/downloads/heads_up_work/poker_bot_christian/pokercore/botproc.py:387: ResourceWarning: unclosed file <_io.TextIOWrapper name=13 encoding='UTF-8'>
+  self._proc = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/downloads/heads_up_work/poker_bot_christian/pokercore/botproc.py:387: ResourceWarning: unclosed file <_io.TextIOWrapper name=15 encoding='UTF-8'>
+  self._proc = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.............
+----------------------------------------------------------------------
+Ran 37 tests in 1.016s
+
+OK

@@ -1,0 +1,6381 @@
+{
+  "config": {
+    "bot": "baselines/team_v1",
+    "opponents": [
+      "bots/caller",
+      "bots/template",
+      "opponents/acpc_style_aggr",
+      "opponents/acpc_style_mid",
+      "opponents/acpc_style_passive",
+      "opponents/always_fold",
+      "opponents/always_shove",
+      "opponents/calling_station",
+      "opponents/calling_station_sticky",
+      "opponents/loose_aggressive",
+      "opponents/loose_aggressive_maniac",
+      "opponents/mixed",
+      "opponents/mixed_wild",
+      "opponents/short_stack",
+      "opponents/short_stack_20bb",
+      "opponents/tight_value",
+      "opponents/tight_value_nit",
+      "opponents/trapper",
+      "opponents/trapper_tight"
+    ],
+    "seeds": [
+      801,
+      802,
+      803,
+      804,
+      805,
+      806,
+      807,
+      808
+    ],
+    "out": "results/heldout_v1",
+    "workers": 2,
+    "hands": 2000,
+    "stack": 10000,
+    "blinds": "standard",
+    "docker": false,
+    "core_hash": "2687febda342c653",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "bot_sha256": {
+      "baselines/team_v1": "0ac1618d77d771563ce7546025e70a755afe744698af837ef0c2cd22ed3603f0",
+      "bots/caller": "77c59cbe338ae34c75fcbe0122cd3ee9473d6be582a2e0eb1842b631f004aee2",
+      "bots/template": "a72ec8c078ffcef42c0ef08e07df51951483ddc9b2bea6c129b5c6470ae22951",
+      "opponents/acpc_style_aggr": "f9f32294fc7db5dafc5e73cd022ce411dae4db5131072f62f487f757e85a0ec2",
+      "opponents/acpc_style_mid": "39021e2903e8677b46a798180a4f3c49dfe53cd6c4e9675560c46c4de53b3d70",
+      "opponents/acpc_style_passive": "a75ae0a558a16839edb058116a88f6207251914d72b3d5f6118ef329f93719e4",
+      "opponents/always_fold": "9380fc23a00c18a6eb9864c4c3f016d01f6a6d2e931f789265a71f660fb63bf8",
+      "opponents/always_shove": "a633a1452e88c9193c8ac808a1d659a20bc8a87384b68218c704609e696788b0",
+      "opponents/calling_station": "c7a62a7c730a845eb8749d7d03a0c18c9ba0dbc9c4801fd06c3331d2f7b5deff",
+      "opponents/calling_station_sticky": "ff9893ea1f88afe2a16c4c1ec26f77fa99b6c6f06895f877e42b2677ab5ba1d9",
+      "opponents/loose_aggressive": "c81748728777d15f190a9ea13ec60355e3d108d0422f358252a8bb925a28214f",
+      "opponents/loose_aggressive_maniac": "a92e5d0464bb167219977017bb09e8f37d45daf5621d83aeb21e949fe00df908",
+      "opponents/mixed": "5447200868cc28772c98262b24528c93e68e2713c3bcd3bbb8fec58ac8010798",
+      "opponents/mixed_wild": "6e452f6d13b1c2d2f576051ec9e93dd31f4c61774e926d23ac0b9eefce203afd",
+      "opponents/short_stack": "ee5861a7da955ea06dd9b7a47ae9126da9305d9a7ed9545d97c5f85fab88e28f",
+      "opponents/short_stack_20bb": "8d8f2518e0e21f1b4e4d7418cd9b21905b0076603695237ab7dcc7a37f5bb154",
+      "opponents/tight_value": "22dc0849714b4eb2c055c4681d6333e945f3f06f6a1ee158c97c1418bc0ffafd",
+      "opponents/tight_value_nit": "3a22b19ba3f60b7fe475e9b0c4e32d434539bb82c33a7ada0d4fa13eb776d41a",
+      "opponents/trapper": "872dbb54a15ce9069912aecea60adbbc72c1eea8ad6f019ac9c9c87659df9c21",
+      "opponents/trapper_tight": "f2d2c3c4a16fba8ac3bc08dcbdac9c052272cebf626b5d31614846e22ac7c35b"
+    }
+  },
+  "summary": {
+    "bots/caller": {
+      "win": 8,
+      "draw": 0,
+      "loss": 0,
+      "invalid": 0
+    },
+    "bots/template": {
+      "win": 8,
+      "draw": 0,
+      "loss": 0,
+      "invalid": 0
+    },
+    "opponents/acpc_style_aggr": {
+      "win": 2,
+      "draw": 6,
+      "loss": 0,
+      "invalid": 0
+    },
+    "opponents/acpc_style_mid": {
+      "win": 1,
+      "draw": 6,
+      "loss": 1,
+      "invalid": 0
+    },
+    "opponents/acpc_style_passive": {
+      "win": 1,
+      "draw": 6,
+      "loss": 1,
+      "invalid": 0
+    }
+  },
+  "pairs": [
+    {
+      "opponent": "bots/caller",
+      "seed": 801,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 49,
+                "bb_per_100": 221.27,
+                "busted_on_hand": null,
+                "decisions": 195,
+                "avg_think_ms": 15.479,
+                "max_think_ms": 23.82,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 49,
+                "bb_per_100": -221.27,
+                "busted_on_hand": 48,
+                "decisions": 243,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.001,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 49,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 195,
+              "avg_think_ms": 15.479,
+              "max_think_ms": 23.82,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 200.25269299992488,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 243,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.001,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 161.7454929998985,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 23.82,
+          "decisions": 438,
+          "seconds": 3.622,
+          "log": "results/heldout_v1/00_caller/seed_801_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 38,
+                "bb_per_100": 345.84,
+                "busted_on_hand": null,
+                "decisions": 152,
+                "avg_think_ms": 16.032,
+                "max_think_ms": 50.3,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 38,
+                "bb_per_100": -345.84,
+                "busted_on_hand": 37,
+                "decisions": 190,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.051,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 38,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 190,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.051,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 133.79243600002155,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 152,
+              "avg_think_ms": 16.032,
+              "max_think_ms": 50.3,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 157.72051600004033,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 50.3,
+          "decisions": 342,
+          "seconds": 2.968,
+          "log": "results/heldout_v1/00_caller/seed_801_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/caller",
+      "seed": 802,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 78,
+                "bb_per_100": 92.07,
+                "busted_on_hand": null,
+                "decisions": 309,
+                "avg_think_ms": 15.56,
+                "max_think_ms": 34.474,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 78,
+                "bb_per_100": -92.07,
+                "busted_on_hand": 77,
+                "decisions": 384,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.004,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 78,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 309,
+              "avg_think_ms": 15.56,
+              "max_think_ms": 34.474,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 191.58173900007114,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 384,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.004,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 156.9887949999611,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 34.474,
+          "decisions": 693,
+          "seconds": 5.596,
+          "log": "results/heldout_v1/00_caller/seed_802_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 31,
+                "bb_per_100": 480.87,
+                "busted_on_hand": null,
+                "decisions": 124,
+                "avg_think_ms": 15.654,
+                "max_think_ms": 37.852,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 31,
+                "bb_per_100": -480.87,
+                "busted_on_hand": 30,
+                "decisions": 149,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.003,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 31,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 149,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.003,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 85.29140900009224,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 124,
+              "avg_think_ms": 15.654,
+              "max_think_ms": 37.852,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 146.6941300000144,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 37.852,
+          "decisions": 273,
+          "seconds": 2.392,
+          "log": "results/heldout_v1/00_caller/seed_802_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/caller",
+      "seed": 803,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 31,
+                "bb_per_100": 423.58,
+                "busted_on_hand": null,
+                "decisions": 124,
+                "avg_think_ms": 15.791,
+                "max_think_ms": 58.207,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 31,
+                "bb_per_100": -423.58,
+                "busted_on_hand": 30,
+                "decisions": 156,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.003,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 31,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 124,
+              "avg_think_ms": 15.791,
+              "max_think_ms": 58.207,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 163.2158630000049,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 156,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.003,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 137.50330599998506,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 58.207,
+          "decisions": 280,
+          "seconds": 2.455,
+          "log": "results/heldout_v1/00_caller/seed_803_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 45,
+                "bb_per_100": 335.57,
+                "busted_on_hand": null,
+                "decisions": 180,
+                "avg_think_ms": 15.496,
+                "max_think_ms": 36.886,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 45,
+                "bb_per_100": -335.57,
+                "busted_on_hand": 44,
+                "decisions": 211,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.003,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 45,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 211,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.003,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 90.28935300000285,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 180,
+              "avg_think_ms": 15.496,
+              "max_think_ms": 36.886,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 138.60130099999424,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 36.886,
+          "decisions": 391,
+          "seconds": 3.339,
+          "log": "results/heldout_v1/00_caller/seed_803_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/caller",
+      "seed": 804,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 39,
+                "bb_per_100": 306.03,
+                "busted_on_hand": null,
+                "decisions": 156,
+                "avg_think_ms": 15.514,
+                "max_think_ms": 26.452,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 39,
+                "bb_per_100": -306.03,
+                "busted_on_hand": 38,
+                "decisions": 184,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.003,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 39,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 156,
+              "avg_think_ms": 15.514,
+              "max_think_ms": 26.452,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 146.48593800006893,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 184,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.003,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 121.53286500006288,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 26.452,
+          "decisions": 340,
+          "seconds": 2.955,
+          "log": "results/heldout_v1/00_caller/seed_804_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 62,
+                "bb_per_100": 187.19,
+                "busted_on_hand": null,
+                "decisions": 245,
+                "avg_think_ms": 15.418,
+                "max_think_ms": 30.216,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 62,
+                "bb_per_100": -187.19,
+                "busted_on_hand": 61,
+                "decisions": 301,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.005,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 62,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 301,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.005,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 108.10171299999638,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 245,
+              "avg_think_ms": 15.418,
+              "max_think_ms": 30.216,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 123.91794999996364,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 30.216,
+          "decisions": 546,
+          "seconds": 4.472,
+          "log": "results/heldout_v1/00_caller/seed_804_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/caller",
+      "seed": 805,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 39,
+                "bb_per_100": 324.44,
+                "busted_on_hand": null,
+                "decisions": 156,
+                "avg_think_ms": 15.526,
+                "max_think_ms": 23.034,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 39,
+                "bb_per_100": -324.44,
+                "busted_on_hand": 38,
+                "decisions": 192,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.002,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 39,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 156,
+              "avg_think_ms": 15.526,
+              "max_think_ms": 23.034,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 145.61378999997032,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 192,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.002,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 67.32483700000103,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 23.034,
+          "decisions": 348,
+          "seconds": 2.924,
+          "log": "results/heldout_v1/00_caller/seed_805_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 31,
+                "bb_per_100": 435.55,
+                "busted_on_hand": null,
+                "decisions": 122,
+                "avg_think_ms": 15.935,
+                "max_think_ms": 47.045,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 31,
+                "bb_per_100": -435.55,
+                "busted_on_hand": 30,
+                "decisions": 148,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.003,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 31,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 148,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.003,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 145.60615200002758,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 122,
+              "avg_think_ms": 15.935,
+              "max_think_ms": 47.045,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 212.8158739999435,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 47.045,
+          "decisions": 270,
+          "seconds": 2.516,
+          "log": "results/heldout_v1/00_caller/seed_805_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/caller",
+      "seed": 806,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 27,
+                "bb_per_100": 539.56,
+                "busted_on_hand": null,
+                "decisions": 104,
+                "avg_think_ms": 15.216,
+                "max_think_ms": 23.559,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 27,
+                "bb_per_100": -539.56,
+                "busted_on_hand": 26,
+                "decisions": 123,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.002,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 27,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 104,
+              "avg_think_ms": 15.216,
+              "max_think_ms": 23.559,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 145.46293699993385,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 123,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.002,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 79.92913999999018,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 23.559,
+          "decisions": 227,
+          "seconds": 2.02,
+          "log": "results/heldout_v1/00_caller/seed_806_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 29,
+                "bb_per_100": 516.86,
+                "busted_on_hand": null,
+                "decisions": 112,
+                "avg_think_ms": 15.985,
+                "max_think_ms": 42.191,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 29,
+                "bb_per_100": -516.86,
+                "busted_on_hand": 28,
+                "decisions": 142,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.002,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 29,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 142,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.002,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 110.13962800006993,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 112,
+              "avg_think_ms": 15.985,
+              "max_think_ms": 42.191,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 141.71029700003146,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 42.191,
+          "decisions": 254,
+          "seconds": 2.248,
+          "log": "results/heldout_v1/00_caller/seed_806_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/caller",
+      "seed": 807,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 32,
+                "bb_per_100": 306.16,
+                "busted_on_hand": null,
+                "decisions": 127,
+                "avg_think_ms": 15.531,
+                "max_think_ms": 41.115,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 32,
+                "bb_per_100": -306.16,
+                "busted_on_hand": 31,
+                "decisions": 144,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.003,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 32,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 127,
+              "avg_think_ms": 15.531,
+              "max_think_ms": 41.115,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 143.0143140000837,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 144,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.003,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 93.68371999994451,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 41.115,
+          "decisions": 271,
+          "seconds": 2.428,
+          "log": "results/heldout_v1/00_caller/seed_807_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 43,
+                "bb_per_100": 349.56,
+                "busted_on_hand": null,
+                "decisions": 171,
+                "avg_think_ms": 15.629,
+                "max_think_ms": 28.453,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 43,
+                "bb_per_100": -349.56,
+                "busted_on_hand": 42,
+                "decisions": 210,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.002,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 43,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 210,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.002,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 98.57859900000676,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 171,
+              "avg_think_ms": 15.629,
+              "max_think_ms": 28.453,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 132.74378000005527,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 28.453,
+          "decisions": 381,
+          "seconds": 3.172,
+          "log": "results/heldout_v1/00_caller/seed_807_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/caller",
+      "seed": 808,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 55,
+                "bb_per_100": 187.73,
+                "busted_on_hand": null,
+                "decisions": 214,
+                "avg_think_ms": 15.55,
+                "max_think_ms": 33.99,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 55,
+                "bb_per_100": -187.73,
+                "busted_on_hand": 54,
+                "decisions": 256,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.005,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 55,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 214,
+              "avg_think_ms": 15.55,
+              "max_think_ms": 33.99,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 148.72496899999987,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 256,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.005,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 85.46787199998107,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 33.99,
+          "decisions": 470,
+          "seconds": 3.98,
+          "log": "results/heldout_v1/00_caller/seed_808_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 34,
+                "bb_per_100": 445.59,
+                "busted_on_hand": null,
+                "decisions": 130,
+                "avg_think_ms": 15.519,
+                "max_think_ms": 35.017,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 34,
+                "bb_per_100": -445.59,
+                "busted_on_hand": 33,
+                "decisions": 159,
+                "avg_think_ms": 0.001,
+                "max_think_ms": 0.005,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 34,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 159,
+              "avg_think_ms": 0.001,
+              "max_think_ms": 0.005,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 49.464750999959506,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 130,
+              "avg_think_ms": 15.519,
+              "max_think_ms": 35.017,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 130.5045000000291,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 35.017,
+          "decisions": 289,
+          "seconds": 2.464,
+          "log": "results/heldout_v1/00_caller/seed_808_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/template",
+      "seed": 801,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 110,
+                "bb_per_100": 48.69,
+                "busted_on_hand": null,
+                "decisions": 165,
+                "avg_think_ms": 16.673,
+                "max_think_ms": 64.668,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 110,
+                "bb_per_100": -48.69,
+                "busted_on_hand": 109,
+                "decisions": 251,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.017,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 110,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 165,
+              "avg_think_ms": 16.673,
+              "max_think_ms": 64.668,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 138.76493399993706,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 251,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.017,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 85.75028400002793,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 64.668,
+          "decisions": 416,
+          "seconds": 3.344,
+          "log": "results/heldout_v1/01_template/seed_801_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 115,
+                "bb_per_100": 43.97,
+                "busted_on_hand": null,
+                "decisions": 180,
+                "avg_think_ms": 16.162,
+                "max_think_ms": 33.823,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 115,
+                "bb_per_100": -43.97,
+                "busted_on_hand": 114,
+                "decisions": 260,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.052,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 115,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 260,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.052,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 57.03007500005697,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 180,
+              "avg_think_ms": 16.162,
+              "max_think_ms": 33.823,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 129.45700000000215,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 33.823,
+          "decisions": 440,
+          "seconds": 3.463,
+          "log": "results/heldout_v1/01_template/seed_801_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/template",
+      "seed": 802,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 111,
+                "bb_per_100": 49.38,
+                "busted_on_hand": null,
+                "decisions": 164,
+                "avg_think_ms": 17.05,
+                "max_think_ms": 65.392,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 111,
+                "bb_per_100": -49.38,
+                "busted_on_hand": 110,
+                "decisions": 251,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.032,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 111,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 164,
+              "avg_think_ms": 17.05,
+              "max_think_ms": 65.392,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 143.22233799998685,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 251,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.032,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 87.71380200005297,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 65.392,
+          "decisions": 415,
+          "seconds": 3.36,
+          "log": "results/heldout_v1/01_template/seed_802_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 47,
+                "bb_per_100": 166.67,
+                "busted_on_hand": null,
+                "decisions": 80,
+                "avg_think_ms": 16.067,
+                "max_think_ms": 43.758,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 47,
+                "bb_per_100": -166.67,
+                "busted_on_hand": 46,
+                "decisions": 114,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.006,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 47,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 114,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.006,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 50.0342880000062,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 80,
+              "avg_think_ms": 16.067,
+              "max_think_ms": 43.758,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 127.96266399993783,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 43.758,
+          "decisions": 194,
+          "seconds": 1.707,
+          "log": "results/heldout_v1/01_template/seed_802_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/template",
+      "seed": 803,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 111,
+                "bb_per_100": 44.48,
+                "busted_on_hand": null,
+                "decisions": 169,
+                "avg_think_ms": 16.406,
+                "max_think_ms": 41.865,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 111,
+                "bb_per_100": -44.48,
+                "busted_on_hand": 110,
+                "decisions": 254,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.009,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 111,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 169,
+              "avg_think_ms": 16.406,
+              "max_think_ms": 41.865,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 136.84742400005234,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 254,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.009,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 131.51868599993577,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 41.865,
+          "decisions": 423,
+          "seconds": 3.352,
+          "log": "results/heldout_v1/01_template/seed_803_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 112,
+                "bb_per_100": 41.07,
+                "busted_on_hand": null,
+                "decisions": 165,
+                "avg_think_ms": 16.842,
+                "max_think_ms": 41.605,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 112,
+                "bb_per_100": -41.07,
+                "busted_on_hand": 111,
+                "decisions": 248,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.007,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 112,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 248,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.007,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 97.29306400004134,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 165,
+              "avg_think_ms": 16.842,
+              "max_think_ms": 41.605,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 119.69654200004243,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 41.605,
+          "decisions": 413,
+          "seconds": 3.344,
+          "log": "results/heldout_v1/01_template/seed_803_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/template",
+      "seed": 804,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 121,
+                "bb_per_100": 39.33,
+                "busted_on_hand": null,
+                "decisions": 193,
+                "avg_think_ms": 16.331,
+                "max_think_ms": 46.874,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 121,
+                "bb_per_100": -39.33,
+                "busted_on_hand": 120,
+                "decisions": 284,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.009,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 121,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 193,
+              "avg_think_ms": 16.331,
+              "max_think_ms": 46.874,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 119.30753100000402,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 284,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.009,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 117.0622459999322,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 46.874,
+          "decisions": 477,
+          "seconds": 3.736,
+          "log": "results/heldout_v1/01_template/seed_804_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 117,
+                "bb_per_100": 31.78,
+                "busted_on_hand": null,
+                "decisions": 178,
+                "avg_think_ms": 16.188,
+                "max_think_ms": 44.157,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 117,
+                "bb_per_100": -31.78,
+                "busted_on_hand": 116,
+                "decisions": 267,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.007,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 117,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 267,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.007,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 108.95815499998207,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 178,
+              "avg_think_ms": 16.188,
+              "max_think_ms": 44.157,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 121.91317799999979,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 44.157,
+          "decisions": 445,
+          "seconds": 3.455,
+          "log": "results/heldout_v1/01_template/seed_804_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/template",
+      "seed": 805,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 126,
+                "bb_per_100": 41.65,
+                "busted_on_hand": null,
+                "decisions": 191,
+                "avg_think_ms": 16.313,
+                "max_think_ms": 37.467,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 126,
+                "bb_per_100": -41.65,
+                "busted_on_hand": 125,
+                "decisions": 292,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.008,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 126,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 191,
+              "avg_think_ms": 16.313,
+              "max_think_ms": 37.467,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 114.69042699991405,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 292,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.008,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 116.11856600006831,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 37.467,
+          "decisions": 483,
+          "seconds": 3.708,
+          "log": "results/heldout_v1/01_template/seed_805_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 111,
+                "bb_per_100": 49.89,
+                "busted_on_hand": null,
+                "decisions": 170,
+                "avg_think_ms": 16.352,
+                "max_think_ms": 31.044,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 111,
+                "bb_per_100": -49.89,
+                "busted_on_hand": 110,
+                "decisions": 258,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.008,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 111,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 258,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.008,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 134.8571459999448,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 170,
+              "avg_think_ms": 16.352,
+              "max_think_ms": 31.044,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 146.78516499998295,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 31.044,
+          "decisions": 428,
+          "seconds": 3.384,
+          "log": "results/heldout_v1/01_template/seed_805_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/template",
+      "seed": 806,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 75,
+                "bb_per_100": 79.17,
+                "busted_on_hand": null,
+                "decisions": 131,
+                "avg_think_ms": 16.116,
+                "max_think_ms": 38.526,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 75,
+                "bb_per_100": -79.17,
+                "busted_on_hand": 74,
+                "decisions": 182,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.005,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 75,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 131,
+              "avg_think_ms": 16.116,
+              "max_think_ms": 38.526,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 152.5408579999521,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 182,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.005,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 86.17497099999127,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 38.526,
+          "decisions": 313,
+          "seconds": 2.599,
+          "log": "results/heldout_v1/01_template/seed_806_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 122,
+                "bb_per_100": 37.8,
+                "busted_on_hand": null,
+                "decisions": 179,
+                "avg_think_ms": 15.972,
+                "max_think_ms": 26.111,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 122,
+                "bb_per_100": -37.8,
+                "busted_on_hand": 121,
+                "decisions": 271,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.006,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 122,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 271,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.006,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 79.12269399992056,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 179,
+              "avg_think_ms": 15.972,
+              "max_think_ms": 26.111,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 135.95453800007817,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 26.111,
+          "decisions": 450,
+          "seconds": 3.485,
+          "log": "results/heldout_v1/01_template/seed_806_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/template",
+      "seed": 807,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 141,
+                "bb_per_100": 25.32,
+                "busted_on_hand": null,
+                "decisions": 212,
+                "avg_think_ms": 16.313,
+                "max_think_ms": 41.705,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 141,
+                "bb_per_100": -25.32,
+                "busted_on_hand": 140,
+                "decisions": 309,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.007,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 141,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 212,
+              "avg_think_ms": 16.313,
+              "max_think_ms": 41.705,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 109.30907400006618,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 309,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.007,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 117.15740399995411,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 41.705,
+          "decisions": 521,
+          "seconds": 4.101,
+          "log": "results/heldout_v1/01_template/seed_807_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 110,
+                "bb_per_100": 52.95,
+                "busted_on_hand": null,
+                "decisions": 165,
+                "avg_think_ms": 16.604,
+                "max_think_ms": 47.25,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 110,
+                "bb_per_100": -52.95,
+                "busted_on_hand": 109,
+                "decisions": 248,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.007,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 110,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 248,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.007,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 99.05185699994945,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 165,
+              "avg_think_ms": 16.604,
+              "max_think_ms": 47.25,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 132.50307099997372,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 47.25,
+          "decisions": 413,
+          "seconds": 3.306,
+          "log": "results/heldout_v1/01_template/seed_807_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "bots/template",
+      "seed": 808,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 109,
+                "bb_per_100": 44.38,
+                "busted_on_hand": null,
+                "decisions": 166,
+                "avg_think_ms": 16.196,
+                "max_think_ms": 24.447,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 109,
+                "bb_per_100": -44.38,
+                "busted_on_hand": 108,
+                "decisions": 250,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.005,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 109,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 166,
+              "avg_think_ms": 16.196,
+              "max_think_ms": 24.447,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 149.96836999989682,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 250,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.005,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 85.43609799994556,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 24.447,
+          "decisions": 416,
+          "seconds": 3.224,
+          "log": "results/heldout_v1/01_template/seed_808_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 111,
+                "bb_per_100": 51.24,
+                "busted_on_hand": null,
+                "decisions": 166,
+                "avg_think_ms": 16.517,
+                "max_think_ms": 40.16,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 111,
+                "bb_per_100": -51.24,
+                "busted_on_hand": 110,
+                "decisions": 254,
+                "avg_think_ms": 0.003,
+                "max_think_ms": 0.011,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 111,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 254,
+              "avg_think_ms": 0.003,
+              "max_think_ms": 0.011,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 98.9473930000031,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 166,
+              "avg_think_ms": 16.517,
+              "max_think_ms": 40.16,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 135.88225499995588,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 40.16,
+          "decisions": 420,
+          "seconds": 3.303,
+          "log": "results/heldout_v1/01_template/seed_808_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_aggr",
+      "seed": 801,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 7,
+                "bb_per_100": 2857.14,
+                "busted_on_hand": null,
+                "decisions": 26,
+                "avg_think_ms": 14.356,
+                "max_think_ms": 30.019,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 7,
+                "bb_per_100": -2857.14,
+                "busted_on_hand": 6,
+                "decisions": 25,
+                "avg_think_ms": 0.199,
+                "max_think_ms": 0.543,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 7,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 26,
+              "avg_think_ms": 14.356,
+              "max_think_ms": 30.019,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 146.84260199999244,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 25,
+              "avg_think_ms": 0.199,
+              "max_think_ms": 0.543,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 162.5017360000811,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 30.019,
+          "decisions": 51,
+          "seconds": 0.72,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_801_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 7,
+                "bb_per_100": 2857.14,
+                "busted_on_hand": null,
+                "decisions": 31,
+                "avg_think_ms": 0.216,
+                "max_think_ms": 0.4,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 7,
+                "bb_per_100": -2857.14,
+                "busted_on_hand": 6,
+                "decisions": 30,
+                "avg_think_ms": 12.455,
+                "max_think_ms": 22.461,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 7,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 31,
+              "avg_think_ms": 0.216,
+              "max_think_ms": 0.4,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 129.83204199997544,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 30,
+              "avg_think_ms": 12.455,
+              "max_think_ms": 22.461,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 119.10511200005658,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 22.461,
+          "decisions": 61,
+          "seconds": 0.672,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_801_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_aggr",
+      "seed": 802,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 33,
+                "bb_per_100": 587.88,
+                "busted_on_hand": null,
+                "decisions": 64,
+                "avg_think_ms": 17.167,
+                "max_think_ms": 59.472,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 33,
+                "bb_per_100": -587.88,
+                "busted_on_hand": 32,
+                "decisions": 75,
+                "avg_think_ms": 0.28,
+                "max_think_ms": 0.484,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 33,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 64,
+              "avg_think_ms": 17.167,
+              "max_think_ms": 59.472,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 122.73853699991832,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 75,
+              "avg_think_ms": 0.28,
+              "max_think_ms": 0.484,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 163.4220150000374,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 59.472,
+          "decisions": 139,
+          "seconds": 1.543,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_802_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 36,
+                "bb_per_100": 252.11,
+                "busted_on_hand": null,
+                "decisions": 120,
+                "avg_think_ms": 14.004,
+                "max_think_ms": 23.907,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 36,
+                "bb_per_100": -252.11,
+                "busted_on_hand": 35,
+                "decisions": 130,
+                "avg_think_ms": 0.201,
+                "max_think_ms": 0.45,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 36,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 130,
+              "avg_think_ms": 0.201,
+              "max_think_ms": 0.45,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 137.53045099997507,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 120,
+              "avg_think_ms": 14.004,
+              "max_think_ms": 23.907,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 142.27930699996705,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 23.907,
+          "decisions": 250,
+          "seconds": 2.14,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_802_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_aggr",
+      "seed": 803,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 89,
+                "bb_per_100": -5.94,
+                "busted_on_hand": null,
+                "decisions": 275,
+                "avg_think_ms": 14.699,
+                "max_think_ms": 60.469,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 89,
+                "bb_per_100": 5.94,
+                "busted_on_hand": 88,
+                "decisions": 279,
+                "avg_think_ms": 0.213,
+                "max_think_ms": 0.438,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 89,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 275,
+              "avg_think_ms": 14.699,
+              "max_think_ms": 60.469,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 164.3362119999665,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 279,
+              "avg_think_ms": 0.213,
+              "max_think_ms": 0.438,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 146.51980799999365,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 60.469,
+          "decisions": 554,
+          "seconds": 4.852,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_803_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 71,
+                "bb_per_100": 121.4,
+                "busted_on_hand": null,
+                "decisions": 208,
+                "avg_think_ms": 15.631,
+                "max_think_ms": 51.074,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 71,
+                "bb_per_100": -121.4,
+                "busted_on_hand": 70,
+                "decisions": 220,
+                "avg_think_ms": 0.22,
+                "max_think_ms": 0.461,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 71,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 220,
+              "avg_think_ms": 0.22,
+              "max_think_ms": 0.461,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 169.53749900005732,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 208,
+              "avg_think_ms": 15.631,
+              "max_think_ms": 51.074,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 146.6470919999665,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 51.074,
+          "decisions": 428,
+          "seconds": 3.956,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_803_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_aggr",
+      "seed": 804,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 19,
+                "bb_per_100": 1052.63,
+                "busted_on_hand": null,
+                "decisions": 57,
+                "avg_think_ms": 0.18,
+                "max_think_ms": 0.422,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 19,
+                "bb_per_100": -1052.63,
+                "busted_on_hand": 18,
+                "decisions": 64,
+                "avg_think_ms": 13.19,
+                "max_think_ms": 21.363,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 19,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 64,
+              "avg_think_ms": 13.19,
+              "max_think_ms": 21.363,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 162.31147000007695,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 57,
+              "avg_think_ms": 0.18,
+              "max_think_ms": 0.422,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 127.31522399997175,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 21.363,
+          "decisions": 121,
+          "seconds": 1.196,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_804_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 25,
+                "bb_per_100": 634.64,
+                "busted_on_hand": null,
+                "decisions": 71,
+                "avg_think_ms": 14.802,
+                "max_think_ms": 39.178,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 25,
+                "bb_per_100": -634.64,
+                "busted_on_hand": 24,
+                "decisions": 75,
+                "avg_think_ms": 0.181,
+                "max_think_ms": 0.34,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 25,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 75,
+              "avg_think_ms": 0.181,
+              "max_think_ms": 0.34,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 150.02861699997538,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 71,
+              "avg_think_ms": 14.802,
+              "max_think_ms": 39.178,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 149.88883399996666,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 39.178,
+          "decisions": 146,
+          "seconds": 1.464,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_804_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_aggr",
+      "seed": 805,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 29,
+                "bb_per_100": 369.21,
+                "busted_on_hand": null,
+                "decisions": 107,
+                "avg_think_ms": 0.218,
+                "max_think_ms": 2.316,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 29,
+                "bb_per_100": -369.21,
+                "busted_on_hand": 28,
+                "decisions": 105,
+                "avg_think_ms": 14.404,
+                "max_think_ms": 27.807,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 29,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 105,
+              "avg_think_ms": 14.404,
+              "max_think_ms": 27.807,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 101.23790299996926,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 107,
+              "avg_think_ms": 0.218,
+              "max_think_ms": 2.316,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 141.62081599999965,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 27.807,
+          "decisions": 212,
+          "seconds": 1.928,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_805_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 36,
+                "bb_per_100": 337.97,
+                "busted_on_hand": null,
+                "decisions": 117,
+                "avg_think_ms": 14.319,
+                "max_think_ms": 41.832,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 36,
+                "bb_per_100": -337.97,
+                "busted_on_hand": 35,
+                "decisions": 119,
+                "avg_think_ms": 0.213,
+                "max_think_ms": 0.557,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 36,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 119,
+              "avg_think_ms": 0.213,
+              "max_think_ms": 0.557,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 134.181859000023,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 117,
+              "avg_think_ms": 14.319,
+              "max_think_ms": 41.832,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 141.12581500000942,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 41.832,
+          "decisions": 236,
+          "seconds": 2.147,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_805_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_aggr",
+      "seed": 806,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 39,
+                "bb_per_100": 359.9,
+                "busted_on_hand": null,
+                "decisions": 120,
+                "avg_think_ms": 13.949,
+                "max_think_ms": 42.74,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 39,
+                "bb_per_100": -359.9,
+                "busted_on_hand": 38,
+                "decisions": 118,
+                "avg_think_ms": 0.207,
+                "max_think_ms": 0.431,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 39,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 120,
+              "avg_think_ms": 13.949,
+              "max_think_ms": 42.74,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 129.82633199999327,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 118,
+              "avg_think_ms": 0.207,
+              "max_think_ms": 0.431,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 155.60698599995249,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 42.74,
+          "decisions": 238,
+          "seconds": 2.125,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_806_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 48,
+                "bb_per_100": 327.35,
+                "busted_on_hand": null,
+                "decisions": 149,
+                "avg_think_ms": 0.211,
+                "max_think_ms": 0.512,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 48,
+                "bb_per_100": -327.35,
+                "busted_on_hand": 47,
+                "decisions": 146,
+                "avg_think_ms": 15.049,
+                "max_think_ms": 47.592,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 48,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 149,
+              "avg_think_ms": 0.211,
+              "max_think_ms": 0.512,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 125.47121399995831,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 146,
+              "avg_think_ms": 15.049,
+              "max_think_ms": 47.592,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 145.73739100001148,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 47.592,
+          "decisions": 295,
+          "seconds": 2.722,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_806_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_aggr",
+      "seed": 807,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 50,
+                "bb_per_100": 157.55,
+                "busted_on_hand": null,
+                "decisions": 137,
+                "avg_think_ms": 14.667,
+                "max_think_ms": 57.019,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 50,
+                "bb_per_100": -157.55,
+                "busted_on_hand": 49,
+                "decisions": 130,
+                "avg_think_ms": 0.208,
+                "max_think_ms": 0.42,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 50,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 137,
+              "avg_think_ms": 14.667,
+              "max_think_ms": 57.019,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 140.66913400006342,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 130,
+              "avg_think_ms": 0.208,
+              "max_think_ms": 0.42,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 139.60200099995745,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 57.019,
+          "decisions": 267,
+          "seconds": 2.496,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_807_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 69,
+                "bb_per_100": 90.99,
+                "busted_on_hand": null,
+                "decisions": 196,
+                "avg_think_ms": 0.212,
+                "max_think_ms": 0.418,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 69,
+                "bb_per_100": -90.99,
+                "busted_on_hand": 68,
+                "decisions": 187,
+                "avg_think_ms": 15.825,
+                "max_think_ms": 46.006,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 69,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 196,
+              "avg_think_ms": 0.212,
+              "max_think_ms": 0.418,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 109.1207790000226,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 187,
+              "avg_think_ms": 15.825,
+              "max_think_ms": 46.006,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 133.54098800004977,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 46.006,
+          "decisions": 383,
+          "seconds": 3.62,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_807_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_aggr",
+      "seed": 808,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 1,
+                "bb_per_100": 20000.0,
+                "busted_on_hand": null,
+                "decisions": 5,
+                "avg_think_ms": 0.231,
+                "max_think_ms": 0.427,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 1,
+                "bb_per_100": -20000.0,
+                "busted_on_hand": 0,
+                "decisions": 6,
+                "avg_think_ms": 10.273,
+                "max_think_ms": 20.761,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 1,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 6,
+              "avg_think_ms": 10.273,
+              "max_think_ms": 20.761,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 131.35242600003494,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 5,
+              "avg_think_ms": 0.231,
+              "max_think_ms": 0.427,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 155.64724099999694,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 20.761,
+          "decisions": 11,
+          "seconds": 0.324,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_808_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 37,
+                "bb_per_100": 431.38,
+                "busted_on_hand": null,
+                "decisions": 96,
+                "avg_think_ms": 16.145,
+                "max_think_ms": 40.032,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 37,
+                "bb_per_100": -431.38,
+                "busted_on_hand": 36,
+                "decisions": 108,
+                "avg_think_ms": 0.238,
+                "max_think_ms": 0.463,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 37,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 108,
+              "avg_think_ms": 0.238,
+              "max_think_ms": 0.463,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 146.10572699996283,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 96,
+              "avg_think_ms": 16.145,
+              "max_think_ms": 40.032,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 152.4729220000154,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 40.032,
+          "decisions": 204,
+          "seconds": 2.012,
+          "log": "results/heldout_v1/02_acpc_style_aggr/seed_808_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_mid",
+      "seed": 801,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 7,
+                "bb_per_100": 2857.14,
+                "busted_on_hand": null,
+                "decisions": 26,
+                "avg_think_ms": 14.409,
+                "max_think_ms": 33.851,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 7,
+                "bb_per_100": -2857.14,
+                "busted_on_hand": 6,
+                "decisions": 25,
+                "avg_think_ms": 0.369,
+                "max_think_ms": 4.367,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 7,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 26,
+              "avg_think_ms": 14.409,
+              "max_think_ms": 33.851,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 106.6703519999237,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 25,
+              "avg_think_ms": 0.369,
+              "max_think_ms": 4.367,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 149.64655799997217,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 33.851,
+          "decisions": 51,
+          "seconds": 0.716,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_801_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 7,
+                "bb_per_100": 2857.14,
+                "busted_on_hand": null,
+                "decisions": 31,
+                "avg_think_ms": 0.211,
+                "max_think_ms": 0.433,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 7,
+                "bb_per_100": -2857.14,
+                "busted_on_hand": 6,
+                "decisions": 30,
+                "avg_think_ms": 12.642,
+                "max_think_ms": 21.641,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 7,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 31,
+              "avg_think_ms": 0.211,
+              "max_think_ms": 0.433,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 132.6620190000085,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 30,
+              "avg_think_ms": 12.642,
+              "max_think_ms": 21.641,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 142.25034599996889,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 21.641,
+          "decisions": 61,
+          "seconds": 0.668,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_801_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_mid",
+      "seed": 802,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 33,
+                "bb_per_100": 587.88,
+                "busted_on_hand": null,
+                "decisions": 64,
+                "avg_think_ms": 17.1,
+                "max_think_ms": 50.347,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 33,
+                "bb_per_100": -587.88,
+                "busted_on_hand": 32,
+                "decisions": 75,
+                "avg_think_ms": 0.286,
+                "max_think_ms": 0.458,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 33,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 64,
+              "avg_think_ms": 17.1,
+              "max_think_ms": 50.347,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 154.3793820000019,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 75,
+              "avg_think_ms": 0.286,
+              "max_think_ms": 0.458,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 131.53562200000124,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 50.347,
+          "decisions": 139,
+          "seconds": 1.544,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_802_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 36,
+                "bb_per_100": 252.11,
+                "busted_on_hand": null,
+                "decisions": 120,
+                "avg_think_ms": 13.946,
+                "max_think_ms": 22.974,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 36,
+                "bb_per_100": -252.11,
+                "busted_on_hand": 35,
+                "decisions": 130,
+                "avg_think_ms": 0.199,
+                "max_think_ms": 0.477,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 36,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 130,
+              "avg_think_ms": 0.199,
+              "max_think_ms": 0.477,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 145.6902820000323,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 120,
+              "avg_think_ms": 13.946,
+              "max_think_ms": 22.974,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 148.08131699999194,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 22.974,
+          "decisions": 250,
+          "seconds": 2.131,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_802_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_mid",
+      "seed": 803,
+      "outcome": "loss",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 122,
+                "bb_per_100": 45.53,
+                "busted_on_hand": null,
+                "decisions": 345,
+                "avg_think_ms": 0.236,
+                "max_think_ms": 0.776,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 122,
+                "bb_per_100": -45.53,
+                "busted_on_hand": 121,
+                "decisions": 331,
+                "avg_think_ms": 14.674,
+                "max_think_ms": 61.059,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 122,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 331,
+              "avg_think_ms": 14.674,
+              "max_think_ms": 61.059,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 158.150102000036,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 345,
+              "avg_think_ms": 0.236,
+              "max_think_ms": 0.776,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 159.50491299997793,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 61.059,
+          "decisions": 676,
+          "seconds": 5.843,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_803_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 70,
+                "bb_per_100": 3.12,
+                "busted_on_hand": null,
+                "decisions": 238,
+                "avg_think_ms": 0.214,
+                "max_think_ms": 0.436,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 70,
+                "bb_per_100": -3.12,
+                "busted_on_hand": 69,
+                "decisions": 227,
+                "avg_think_ms": 14.64,
+                "max_think_ms": 52.505,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 70,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 238,
+              "avg_think_ms": 0.214,
+              "max_think_ms": 0.436,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 115.82240300003832,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 227,
+              "avg_think_ms": 14.64,
+              "max_think_ms": 52.505,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 138.51641899998413,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 52.505,
+          "decisions": 465,
+          "seconds": 4.04,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_803_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_mid",
+      "seed": 804,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 19,
+                "bb_per_100": 1052.63,
+                "busted_on_hand": null,
+                "decisions": 57,
+                "avg_think_ms": 0.183,
+                "max_think_ms": 0.452,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 19,
+                "bb_per_100": -1052.63,
+                "busted_on_hand": 18,
+                "decisions": 64,
+                "avg_think_ms": 13.49,
+                "max_think_ms": 27.876,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 19,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 64,
+              "avg_think_ms": 13.49,
+              "max_think_ms": 27.876,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 128.75989499991647,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 57,
+              "avg_think_ms": 0.183,
+              "max_think_ms": 0.452,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 152.05474300000787,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 27.876,
+          "decisions": 121,
+          "seconds": 1.201,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_804_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 25,
+                "bb_per_100": 637.64,
+                "busted_on_hand": null,
+                "decisions": 73,
+                "avg_think_ms": 14.265,
+                "max_think_ms": 22.992,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 25,
+                "bb_per_100": -637.64,
+                "busted_on_hand": 24,
+                "decisions": 78,
+                "avg_think_ms": 0.187,
+                "max_think_ms": 0.349,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 25,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 78,
+              "avg_think_ms": 0.187,
+              "max_think_ms": 0.349,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 142.86137999999937,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 73,
+              "avg_think_ms": 14.265,
+              "max_think_ms": 22.992,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 137.6123599999346,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 22.992,
+          "decisions": 151,
+          "seconds": 1.394,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_804_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_mid",
+      "seed": 805,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 29,
+                "bb_per_100": 369.21,
+                "busted_on_hand": null,
+                "decisions": 110,
+                "avg_think_ms": 0.202,
+                "max_think_ms": 0.403,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 29,
+                "bb_per_100": -369.21,
+                "busted_on_hand": 28,
+                "decisions": 108,
+                "avg_think_ms": 14.706,
+                "max_think_ms": 58.343,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 29,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 108,
+              "avg_think_ms": 14.706,
+              "max_think_ms": 58.343,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 87.37956599998142,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 110,
+              "avg_think_ms": 0.202,
+              "max_think_ms": 0.403,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 152.3734949998925,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 58.343,
+          "decisions": 218,
+          "seconds": 2.048,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_805_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 36,
+                "bb_per_100": 346.31,
+                "busted_on_hand": null,
+                "decisions": 119,
+                "avg_think_ms": 13.826,
+                "max_think_ms": 31.754,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 36,
+                "bb_per_100": -346.31,
+                "busted_on_hand": 35,
+                "decisions": 121,
+                "avg_think_ms": 0.215,
+                "max_think_ms": 0.395,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 36,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 121,
+              "avg_think_ms": 0.215,
+              "max_think_ms": 0.395,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 153.6873499999274,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 119,
+              "avg_think_ms": 13.826,
+              "max_think_ms": 31.754,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 143.31400200012467,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 31.754,
+          "decisions": 240,
+          "seconds": 2.104,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_805_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_mid",
+      "seed": 806,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 39,
+                "bb_per_100": 367.79,
+                "busted_on_hand": null,
+                "decisions": 118,
+                "avg_think_ms": 14.168,
+                "max_think_ms": 60.873,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 39,
+                "bb_per_100": -367.79,
+                "busted_on_hand": 38,
+                "decisions": 117,
+                "avg_think_ms": 0.206,
+                "max_think_ms": 0.418,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 39,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 118,
+              "avg_think_ms": 14.168,
+              "max_think_ms": 60.873,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 152.41550500013545,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 117,
+              "avg_think_ms": 0.206,
+              "max_think_ms": 0.418,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 130.19634599982055,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 60.873,
+          "decisions": 235,
+          "seconds": 2.135,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_806_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 48,
+                "bb_per_100": 327.35,
+                "busted_on_hand": null,
+                "decisions": 149,
+                "avg_think_ms": 0.214,
+                "max_think_ms": 0.433,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 48,
+                "bb_per_100": -327.35,
+                "busted_on_hand": 47,
+                "decisions": 146,
+                "avg_think_ms": 15.116,
+                "max_think_ms": 43.862,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 48,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 149,
+              "avg_think_ms": 0.214,
+              "max_think_ms": 0.433,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 130.41903200019078,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 146,
+              "avg_think_ms": 15.116,
+              "max_think_ms": 43.862,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 142.7205509999112,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 43.862,
+          "decisions": 295,
+          "seconds": 2.732,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_806_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_mid",
+      "seed": 807,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 50,
+                "bb_per_100": 158.65,
+                "busted_on_hand": null,
+                "decisions": 142,
+                "avg_think_ms": 14.531,
+                "max_think_ms": 44.435,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 50,
+                "bb_per_100": -158.65,
+                "busted_on_hand": 49,
+                "decisions": 136,
+                "avg_think_ms": 0.213,
+                "max_think_ms": 0.49,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 50,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 142,
+              "avg_think_ms": 14.531,
+              "max_think_ms": 44.435,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 143.5746150000341,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 136,
+              "avg_think_ms": 0.213,
+              "max_think_ms": 0.49,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 141.62677600006646,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 44.435,
+          "decisions": 278,
+          "seconds": 2.584,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_807_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 69,
+                "bb_per_100": 86.24,
+                "busted_on_hand": null,
+                "decisions": 207,
+                "avg_think_ms": 0.22,
+                "max_think_ms": 0.439,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 69,
+                "bb_per_100": -86.24,
+                "busted_on_hand": 68,
+                "decisions": 194,
+                "avg_think_ms": 15.767,
+                "max_think_ms": 41.697,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 69,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 207,
+              "avg_think_ms": 0.22,
+              "max_think_ms": 0.439,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 161.63912100000744,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 194,
+              "avg_think_ms": 15.767,
+              "max_think_ms": 41.697,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 147.30856599999242,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 41.697,
+          "decisions": 401,
+          "seconds": 3.732,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_807_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_mid",
+      "seed": 808,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 1,
+                "bb_per_100": 20000.0,
+                "busted_on_hand": null,
+                "decisions": 5,
+                "avg_think_ms": 0.228,
+                "max_think_ms": 0.402,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 1,
+                "bb_per_100": -20000.0,
+                "busted_on_hand": 0,
+                "decisions": 6,
+                "avg_think_ms": 10.169,
+                "max_think_ms": 21.047,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 1,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 6,
+              "avg_think_ms": 10.169,
+              "max_think_ms": 21.047,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 128.1715030002033,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 5,
+              "avg_think_ms": 0.228,
+              "max_think_ms": 0.402,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 154.15157300003557,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 21.047,
+          "decisions": 11,
+          "seconds": 0.344,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_808_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 37,
+                "bb_per_100": 431.38,
+                "busted_on_hand": null,
+                "decisions": 96,
+                "avg_think_ms": 16.079,
+                "max_think_ms": 33.584,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 37,
+                "bb_per_100": -431.38,
+                "busted_on_hand": 36,
+                "decisions": 108,
+                "avg_think_ms": 0.238,
+                "max_think_ms": 0.489,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 37,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 108,
+              "avg_think_ms": 0.238,
+              "max_think_ms": 0.489,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 153.00712299995212,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 96,
+              "avg_think_ms": 16.079,
+              "max_think_ms": 33.584,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 134.43479000011394,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 33.584,
+          "decisions": 204,
+          "seconds": 2.036,
+          "log": "results/heldout_v1/03_acpc_style_mid/seed_808_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_passive",
+      "seed": 801,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 7,
+                "bb_per_100": 2857.14,
+                "busted_on_hand": null,
+                "decisions": 27,
+                "avg_think_ms": 15.093,
+                "max_think_ms": 37.825,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 7,
+                "bb_per_100": -2857.14,
+                "busted_on_hand": 6,
+                "decisions": 26,
+                "avg_think_ms": 0.197,
+                "max_think_ms": 0.482,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 7,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 27,
+              "avg_think_ms": 15.093,
+              "max_think_ms": 37.825,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 159.09453900007975,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 26,
+              "avg_think_ms": 0.197,
+              "max_think_ms": 0.482,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 144.06391000011354,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 37.825,
+          "decisions": 53,
+          "seconds": 0.736,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_801_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 7,
+                "bb_per_100": 2857.14,
+                "busted_on_hand": null,
+                "decisions": 31,
+                "avg_think_ms": 0.205,
+                "max_think_ms": 0.436,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 7,
+                "bb_per_100": -2857.14,
+                "busted_on_hand": 6,
+                "decisions": 30,
+                "avg_think_ms": 12.751,
+                "max_think_ms": 22.044,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 7,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 31,
+              "avg_think_ms": 0.205,
+              "max_think_ms": 0.436,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 137.01693100006196,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 30,
+              "avg_think_ms": 12.751,
+              "max_think_ms": 22.044,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 140.899576000038,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 22.044,
+          "decisions": 61,
+          "seconds": 0.688,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_801_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_passive",
+      "seed": 802,
+      "outcome": "win",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 33,
+                "bb_per_100": 587.88,
+                "busted_on_hand": null,
+                "decisions": 64,
+                "avg_think_ms": 17.707,
+                "max_think_ms": 53.693,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 33,
+                "bb_per_100": -587.88,
+                "busted_on_hand": 32,
+                "decisions": 75,
+                "avg_think_ms": 0.29,
+                "max_think_ms": 0.45,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 33,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 64,
+              "avg_think_ms": 17.707,
+              "max_think_ms": 53.693,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 132.57625500000358,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 75,
+              "avg_think_ms": 0.29,
+              "max_think_ms": 0.45,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 154.35130199989544,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 53.693,
+          "decisions": 139,
+          "seconds": 1.583,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_802_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 36,
+                "bb_per_100": 252.11,
+                "busted_on_hand": null,
+                "decisions": 120,
+                "avg_think_ms": 14.17,
+                "max_think_ms": 26.399,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 36,
+                "bb_per_100": -252.11,
+                "busted_on_hand": 35,
+                "decisions": 130,
+                "avg_think_ms": 0.201,
+                "max_think_ms": 0.451,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 36,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 130,
+              "avg_think_ms": 0.201,
+              "max_think_ms": 0.451,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 154.74169499998425,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 120,
+              "avg_think_ms": 14.17,
+              "max_think_ms": 26.399,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 141.82103400003143,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 26.399,
+          "decisions": 250,
+          "seconds": 2.155,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_802_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_passive",
+      "seed": 803,
+      "outcome": "loss",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 132,
+                "bb_per_100": 35.67,
+                "busted_on_hand": null,
+                "decisions": 372,
+                "avg_think_ms": 0.24,
+                "max_think_ms": 0.455,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 132,
+                "bb_per_100": -35.67,
+                "busted_on_hand": 131,
+                "decisions": 353,
+                "avg_think_ms": 14.753,
+                "max_think_ms": 53.281,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 132,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 353,
+              "avg_think_ms": 14.753,
+              "max_think_ms": 53.281,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 104.80622299996867,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 372,
+              "avg_think_ms": 0.24,
+              "max_think_ms": 0.455,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 159.24956799995016,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 53.281,
+          "decisions": 725,
+          "seconds": 6.235,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_803_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 70,
+                "bb_per_100": 3.12,
+                "busted_on_hand": null,
+                "decisions": 239,
+                "avg_think_ms": 0.214,
+                "max_think_ms": 0.513,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 70,
+                "bb_per_100": -3.12,
+                "busted_on_hand": 69,
+                "decisions": 227,
+                "avg_think_ms": 14.672,
+                "max_think_ms": 56.437,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 70,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 239,
+              "avg_think_ms": 0.214,
+              "max_think_ms": 0.513,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 149.39542399997663,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 227,
+              "avg_think_ms": 14.672,
+              "max_think_ms": 56.437,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 143.01569500003097,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 56.437,
+          "decisions": 466,
+          "seconds": 4.06,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_803_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_passive",
+      "seed": 804,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 19,
+                "bb_per_100": 1052.63,
+                "busted_on_hand": null,
+                "decisions": 57,
+                "avg_think_ms": 0.183,
+                "max_think_ms": 0.415,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 19,
+                "bb_per_100": -1052.63,
+                "busted_on_hand": 18,
+                "decisions": 64,
+                "avg_think_ms": 13.039,
+                "max_think_ms": 23.088,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 19,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 64,
+              "avg_think_ms": 13.039,
+              "max_think_ms": 23.088,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 148.7087010000323,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 57,
+              "avg_think_ms": 0.183,
+              "max_think_ms": 0.415,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 133.87793500010048,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 23.088,
+          "decisions": 121,
+          "seconds": 1.173,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_804_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 25,
+                "bb_per_100": 637.64,
+                "busted_on_hand": null,
+                "decisions": 73,
+                "avg_think_ms": 14.301,
+                "max_think_ms": 22.854,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 25,
+                "bb_per_100": -637.64,
+                "busted_on_hand": 24,
+                "decisions": 78,
+                "avg_think_ms": 0.186,
+                "max_think_ms": 0.383,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 25,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 78,
+              "avg_think_ms": 0.186,
+              "max_think_ms": 0.383,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 139.55416299995704,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 73,
+              "avg_think_ms": 14.301,
+              "max_think_ms": 22.854,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 140.2172679997875,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 22.854,
+          "decisions": 151,
+          "seconds": 1.413,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_804_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_passive",
+      "seed": 805,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 29,
+                "bb_per_100": 363.17,
+                "busted_on_hand": null,
+                "decisions": 116,
+                "avg_think_ms": 0.201,
+                "max_think_ms": 0.391,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 29,
+                "bb_per_100": -363.17,
+                "busted_on_hand": 28,
+                "decisions": 112,
+                "avg_think_ms": 14.512,
+                "max_think_ms": 36.564,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 29,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 112,
+              "avg_think_ms": 14.512,
+              "max_think_ms": 36.564,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 108.45561599990106,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 116,
+              "avg_think_ms": 0.201,
+              "max_think_ms": 0.391,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 150.95644300004096,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 36.564,
+          "decisions": 228,
+          "seconds": 2.105,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_805_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 36,
+                "bb_per_100": 349.64,
+                "busted_on_hand": null,
+                "decisions": 118,
+                "avg_think_ms": 13.676,
+                "max_think_ms": 26.847,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 36,
+                "bb_per_100": -349.64,
+                "busted_on_hand": 35,
+                "decisions": 120,
+                "avg_think_ms": 0.214,
+                "max_think_ms": 0.456,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 36,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 120,
+              "avg_think_ms": 0.214,
+              "max_think_ms": 0.456,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 140.94989799991708,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 118,
+              "avg_think_ms": 13.676,
+              "max_think_ms": 26.847,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 140.9882349998952,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 26.847,
+          "decisions": 238,
+          "seconds": 2.068,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_805_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_passive",
+      "seed": 806,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 39,
+                "bb_per_100": 367.79,
+                "busted_on_hand": null,
+                "decisions": 118,
+                "avg_think_ms": 14.439,
+                "max_think_ms": 53.429,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 39,
+                "bb_per_100": -367.79,
+                "busted_on_hand": 38,
+                "decisions": 117,
+                "avg_think_ms": 0.214,
+                "max_think_ms": 0.665,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 39,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 118,
+              "avg_think_ms": 14.439,
+              "max_think_ms": 53.429,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 151.41068200000518,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 117,
+              "avg_think_ms": 0.214,
+              "max_think_ms": 0.665,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 125.71700800003782,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 53.429,
+          "decisions": 235,
+          "seconds": 2.196,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_806_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 48,
+                "bb_per_100": 321.79,
+                "busted_on_hand": null,
+                "decisions": 151,
+                "avg_think_ms": 0.207,
+                "max_think_ms": 0.417,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 48,
+                "bb_per_100": -321.79,
+                "busted_on_hand": 47,
+                "decisions": 147,
+                "avg_think_ms": 15.352,
+                "max_think_ms": 39.821,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 48,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 151,
+              "avg_think_ms": 0.207,
+              "max_think_ms": 0.417,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 174.95463600016592,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 147,
+              "avg_think_ms": 15.352,
+              "max_think_ms": 39.821,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 128.2181919998493,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 39.821,
+          "decisions": 298,
+          "seconds": 2.808,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_806_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_passive",
+      "seed": 807,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 50,
+                "bb_per_100": 162.65,
+                "busted_on_hand": null,
+                "decisions": 144,
+                "avg_think_ms": 14.692,
+                "max_think_ms": 33.576,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 50,
+                "bb_per_100": -162.65,
+                "busted_on_hand": 49,
+                "decisions": 138,
+                "avg_think_ms": 0.216,
+                "max_think_ms": 0.437,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 50,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 144,
+              "avg_think_ms": 14.692,
+              "max_think_ms": 33.576,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 106.23123999994277,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 138,
+              "avg_think_ms": 0.216,
+              "max_think_ms": 0.437,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 139.4440179999492,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 33.576,
+          "decisions": 282,
+          "seconds": 2.628,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_807_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 69,
+                "bb_per_100": 99.6,
+                "busted_on_hand": null,
+                "decisions": 197,
+                "avg_think_ms": 0.244,
+                "max_think_ms": 0.464,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 69,
+                "bb_per_100": -99.6,
+                "busted_on_hand": 68,
+                "decisions": 183,
+                "avg_think_ms": 15.726,
+                "max_think_ms": 39.696,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 69,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 197,
+              "avg_think_ms": 0.244,
+              "max_think_ms": 0.464,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 158.7066419999701,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 183,
+              "avg_think_ms": 15.726,
+              "max_think_ms": 39.696,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 124.40227899992351,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 39.696,
+          "decisions": 380,
+          "seconds": 3.548,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_807_seat_1.jsonl"
+        }
+      ]
+    },
+    {
+      "opponent": "opponents/acpc_style_passive",
+      "seed": 808,
+      "outcome": "draw",
+      "runs": [
+        {
+          "reverse": false,
+          "clean": true,
+          "winner": "opponent",
+          "result": {
+            "results": [
+              {
+                "bot": "opponent",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 1,
+                "bb_per_100": 20000.0,
+                "busted_on_hand": null,
+                "decisions": 5,
+                "avg_think_ms": 0.249,
+                "max_think_ms": 0.429,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "candidate",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 1,
+                "bb_per_100": -20000.0,
+                "busted_on_hand": 0,
+                "decisions": 6,
+                "avg_think_ms": 10.242,
+                "max_think_ms": 21.196,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 1,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "candidate": {
+              "decisions": 6,
+              "avg_think_ms": 10.242,
+              "max_think_ms": 21.196,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 90.81661300001542,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "opponent": {
+              "decisions": 5,
+              "avg_think_ms": 0.249,
+              "max_think_ms": 0.429,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 127.63047199996436,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 21.196,
+          "decisions": 11,
+          "seconds": 0.34,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_808_seat_0.jsonl"
+        },
+        {
+          "reverse": true,
+          "clean": true,
+          "winner": "candidate",
+          "result": {
+            "results": [
+              {
+                "bot": "candidate",
+                "place": 1,
+                "final_stack": 20000,
+                "delta": 10000,
+                "hands_played": 37,
+                "bb_per_100": 431.51,
+                "busted_on_hand": null,
+                "decisions": 97,
+                "avg_think_ms": 16.02,
+                "max_think_ms": 70.378,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              },
+              {
+                "bot": "opponent",
+                "place": 2,
+                "final_stack": 0,
+                "delta": -10000,
+                "hands_played": 37,
+                "bb_per_100": -431.51,
+                "busted_on_hand": 36,
+                "decisions": 110,
+                "avg_think_ms": 0.237,
+                "max_think_ms": 0.453,
+                "timeouts": 0,
+                "errors": 0,
+                "restarts": 0,
+                "disabled": false
+              }
+            ],
+            "hands": 37,
+            "stopped": "one_player_left"
+          },
+          "exception": null,
+          "errors": [],
+          "summaries": {
+            "opponent": {
+              "decisions": 110,
+              "avg_think_ms": 0.237,
+              "max_think_ms": 0.453,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 163.39897600005315,
+              "errors_list": [],
+              "stderr_tail": []
+            },
+            "candidate": {
+              "decisions": 97,
+              "avg_think_ms": 16.02,
+              "max_think_ms": 70.378,
+              "timeouts": 0,
+              "errors": 0,
+              "restarts": 0,
+              "disabled": false,
+              "load_ms": 125.14784500012865,
+              "errors_list": [],
+              "stderr_tail": []
+            }
+          },
+          "max_think_ms": 70.378,
+          "decisions": 207,
+          "seconds": 2.007,
+          "log": "results/heldout_v1/04_acpc_style_passive/seed_808_seat_1.jsonl"
+        }
+      ]
+    }
+  ],
+  "note": "interrupted run; always_fold partial rows removed; remaining opponents in results/heldout_v1_partN"
+}
