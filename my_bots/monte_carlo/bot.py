@@ -112,10 +112,29 @@ def range_share(rw):
 _PF_CACHE = {}
 
 
-def pushfold_nash(stack_bb, ante_bb=0.0, iters=400):
+PF_MAX_BB = 16           # depths solved at warmup: 1..PF_MAX_BB bb, with and without antes
+
+
+def _pf_key(stack_bb, ante_bb):
+    return (int(min(max(round(stack_bb), 1), PF_MAX_BB)), 0.1 if ante_bb > 0.05 else 0.0)
+
+
+def presolve_pushfold(deadline):
+    """Solve every depth during the warmup call so decisions only look them up."""
+    for ante in (0.0, 0.1):
+        for s in range(1, PF_MAX_BB + 1):
+            if time.time() > deadline:
+                return
+            pushfold_nash(s, ante, iters=200)
+
+
+def pushfold_nash(stack_bb, ante_bb=0.0, iters=60):
     """(push, call) probabilities per class for the SB-shove / BB-call game with
-    effective stack stack_bb. Solved by fictitious play; cached per depth."""
-    key = (round(stack_bb * 2) / 2, round(ante_bb * 20) / 20)
+    effective stack stack_bb. Solved by fictitious play and cached per whole big
+    blind. Depths deeper than PF_MAX_BB use the PF_MAX_BB solution (only the
+    <=15bb spots use it). A depth missed at warmup gets a quick 60-iteration
+    solve (~40 ms) instead of a full one."""
+    key = _pf_key(stack_bb, ante_bb)
     if key in _PF_CACHE:
         return _PF_CACHE[key]
     S, a = max(key[0], 1.0), key[1]
@@ -295,7 +314,7 @@ def mc_equity(hole, board, range_w, n_aggr=0, n_calls=0, bluff_keep=0.3, budget=
         ov = eval7.evaluate([dc[a], dc[b]] + full)
         outs[k] = 1.0 if mv > ov else 0.5 if mv == ov else 0.0
         done = k + 1
-        if (k & 127) == 127 and time.time() - t0 > budget:
+        if (k & 31) == 31 and time.time() - t0 > budget:
             break
     outs = outs[:done]
     st = strength[picks[:done]]
@@ -349,11 +368,26 @@ def bet_pot_frac(gs, c, frac):
 # Every decision: simulate thousands of runouts against the opponent's likely
 # hands, then pick the action with the highest expected value in chips.
 
+ALL_IN_MIN_EQUITY = 0.70   # never shove (or raise into an all-in) with less equity than this
+
+
+
+# Thinking budget: the tournament allows 2 s, but this bot holds itself to
+# THINK_LIMIT per decision. The Monte Carlo simulation gets what's left of 60%
+# of it, which leaves room for everything else.
+THINK_LIMIT = 0.200
+_T0 = [0.0]
+
+
+def mc_budget():
+    return max(0.01, 0.6 * THINK_LIMIT - (time.time() - _T0[0]))
+
 
 def decide(game_state: dict) -> dict:
+    _T0[0] = time.time()
     if game_state.get("type") == "warmup":
-        pushfold_nash(10)
-        mc_equity(["As", "Kd"], ["2c", "7h", "Ts"], np.ones(169), budget=0.2)
+        presolve_pushfold(time.time() + 20)
+        mc_equity(["As", "Kd"], ["2c", "7h", "Ts"], np.ones(169), budget=0.1)
         return {"action": "check"}
     try:
         return _decide(game_state)
@@ -398,7 +432,7 @@ def _decide(gs):
     owed, pot = gs["amount_owed"], gs["pot"]
     push_range = pushfold_nash(c.eff_bb, c.ante / c.bb)[0] if c.eff_bb <= 15 else None
     rng = opp_preflop_range(c, gs, push_range=push_range)
-    budget = 0.35 if c.street != "preflop" else 0.25
+    budget = mc_budget()
     res = mc_equity(gs["your_cards"], gs["community_cards"], rng,
                     n_aggr=c.opp_post_aggr, n_calls=c.opp_post_calls, budget=budget)
     eq = res.eq
@@ -415,6 +449,9 @@ def _decide(gs):
 
     if c.can_raise:
         for total in candidate_raises(gs, c):
+            # act_raise_to turns raises this big into an all-in: only allow them with 70%+ equity
+            if (total >= c.my_max * 0.9 or total >= c.opp_max) and eq < ALL_IN_MIN_EQUITY:
+                continue
             add = total - gs["your_bet_this_street"]                 # chips we put in
             opp_add = min(total, c.opp_max) - c.opp_bet              # chips they must call
             fe = fold_prob(opp_add, pot + add)
