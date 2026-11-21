@@ -1,16 +1,25 @@
 """
-CYCLER: rotates through strategies, keeping whichever one is winning.
+CYCLER: switches between strategies, keeping whichever one is winning.
 
 Every exploit leaves you open to a counter-exploit, and the counter to any
-counter is to go back toward equilibrium. This bot plays that cycle:
+counter is to go back toward equilibrium. The modes follow that cycle:
 
-    exploit -> pressure -> value -> bluff_catch -> gto -> exploit -> ...
+    exploit -> pressure -> value -> bluff_catch -> gear_shift -> gto
 
 It credits each hand's result (in big blinds) to the mode that played it. If the
 active mode has lost more than SWITCH_BELOW_BB over the last WINDOW hands, it
-switches to the next mode. Otherwise it keeps the current one. The cycle wraps,
-so it keeps rotating until something holds. The active mode and its running
-total are in every decision's "debug".
+jumps to the mode with the best whole-match result per hand (shrunk toward 0
+for small samples), excluding the one that just failed. Untried modes score 0,
+so each one gets tried, in cycle order, before the bot settles on proven ones.
+A mode that is still winning and has the best whole-match record is kept
+through a bad stretch, and bluff_catch is only tried against opponents that
+bet or raise at least 40% of the time after the flop. Otherwise it keeps the
+current mode.
+
+Postflop it won't get into raise wars with draws: each re-raise from the
+opponent narrows their range twice as hard, and a raise must beat calling by a
+margin per extra chip risked (the EVs are estimates), or it just calls. The active mode and its running total are
+in every decision's "debug".
 
 All modes share one engine: Monte Carlo equity against the opponent's range,
 then the highest-EV action. The modes differ in what they assume about the
@@ -326,7 +335,7 @@ def mc_equity(hole, board, range_w, n_aggr=0, n_calls=0, bluff_keep=0.3, budget=
         ov = eval7.evaluate([dc[a], dc[b]] + full)
         outs[k] = 1.0 if mv > ov else 0.5 if mv == ov else 0.0
         done = k + 1
-        if (k & 31) == 31 and time.time() - t0 > budget:
+        if (k & 7) == 7 and time.time() - t0 > budget:
             break
     outs = outs[:done]
     st = strength[picks[:done]]
@@ -379,17 +388,20 @@ def bet_pot_frac(gs, c, frac):
 # ============================ CYCLER STRATEGY ===============================
 # Several strategies ("modes"), one active at a time. After every hand it adds
 # up how many big blinds the active mode has won over the last WINDOW hands. If
-# that total drops below SWITCH_BELOW_BB, the mode isn't working: switch to the
-# next one in the cycle. If it's holding up, keep it. The cycle wraps around, so
-# it keeps rotating for as long as nothing sticks.
+# that total drops below SWITCH_BELOW_BB, the mode isn't working: jump to the
+# best other mode by whole-match bb/hand (see pick_next_mode). If it's holding
+# up, keep it.
 #
-# The order follows the exploit / counter-exploit cycle:
+# The order (used to try untried modes and to break ties) follows the
+# exploit / counter-exploit cycle:
 #   exploit      DEFAULT. Best response to the opponent's measured frequencies
 #                (beats counter_nash, which is itself an exploiter)
 #   pressure     vs over-folders: bluff more, bet bigger
 #   value        vs calling stations: value-bet thin and big, never bluff
 #   bluff_catch  vs over-aggressive bots: believe their bets less, call down
 #                lighter, trap strong hands by checking
+#   gear_shift   vs opponent-modelling bots: bait them with tight, passive play,
+#                then call down and trap once they start bluffing more (below)
 #   gto          balanced own play: fold-equity guesses from equilibrium,
 #                not from the opponent (the counter to whatever counter they found)
 # ...and then back to exploit.
@@ -403,6 +415,7 @@ MODES = [
     dict(name="pressure",    use_model=True,  fe_mult=1.30, bluff_keep=0.30, sizes=(0.5, 0.75, 1.25),  bluffs=True,  trap=0.00),
     dict(name="value",       use_model=True,  fe_mult=0.50, bluff_keep=0.30, sizes=(0.66, 1.0, 1.5),   bluffs=False, trap=0.00),
     dict(name="bluff_catch", use_model=True,  fe_mult=0.80, bluff_keep=0.65, sizes=(0.33, 0.66),       bluffs=False, trap=0.35),
+    dict(name="gear_shift",  use_model=True,  fe_mult=0.60, bluff_keep=0.15, sizes=(0.33, 0.66),       bluffs=False, trap=0.00),
     dict(name="gto",         use_model=False, fe_mult=1.00, bluff_keep=0.30, sizes=(0.33, 0.66, 1.0),  bluffs=True,  trap=0.00),
 ]
 WINDOW = 15               # hands a mode is judged over (rolling)
@@ -451,6 +464,45 @@ PUSH_FOLD_BB = 12
 
 
 # ---- the cycle ----------------------------------------------------------------
+SCORE_SHRINK = 10         # pseudo-hands at 0 bb added to each mode's record when scoring
+
+
+def mode_score(name):
+    """A mode's whole-match bb per hand, shrunk toward 0 so a few lucky hands
+    don't make it look best. An untried mode scores exactly 0."""
+    hands, bb = MODE_LOG[name]
+    return bb / (hands + SCORE_SHRINK)
+
+
+BLUFF_CATCH_MIN_AGGR = 0.40   # only try bluff_catch against bots that bet/raise this often postflop
+
+
+def mode_allowed(m):
+    """bluff_catch assumes they bluff a lot; against a bot that rarely bets
+    (like Nash) it just pays off value bets, so it needs evidence first."""
+    if m["name"] == "bluff_catch":
+        return est("post_aggr", 0.35) >= BLUFF_CATCH_MIN_AGGR
+    return True
+
+
+def pick_next_mode(cur):
+    """After a bad stretch: if the current mode still has the best whole-match
+    record and is winning overall, the stretch was bad luck, so keep it.
+    Otherwise jump to the best-scoring other mode. A mode that hasn't been
+    tried scores 0, which beats any mode that has been losing, so every mode
+    gets a turn before the bot settles on proven ones. Ties go to whichever
+    mode comes next in the cycle order."""
+    n = len(MODES)
+    order = [(cur + k) % n for k in range(1, n) if mode_allowed(MODES[(cur + k) % n])]
+    if not order:
+        return cur
+    best = max(order, key=lambda i: (mode_score(MODES[i]["name"]), -order.index(i)))
+    cur_score = mode_score(MODES[cur]["name"])
+    if cur_score > 0 and cur_score >= mode_score(MODES[best]["name"]):
+        return cur
+    return best
+
+
 def track_results(gs, c):
     """Once per hand: credit the stack change since the last hand to the mode
     that played it, then decide whether to keep that mode."""
@@ -470,9 +522,15 @@ def track_results(gs, c):
         RECENT = RECENT[-WINDOW:]
         if len(RECENT) >= WINDOW and sum(RECENT) < SWITCH_BELOW_BB:
             lost = sum(RECENT)
-            MODE_IDX = (MODE_IDX + 1) % len(MODES)
+            prev = MODE_IDX
+            MODE_IDX = pick_next_mode(MODE_IDX)
             RECENT = []
-            print(f"hand {hn}: {mode} at {lost:.0f}bb over {WINDOW} hands -> switching to {MODES[MODE_IDX]['name']}")
+            if MODE_IDX != prev and MODES[MODE_IDX]["name"] == "gear_shift":
+                gear_reset()                      # fresh baseline each time it starts
+            scores = ", ".join(f"{m['name']} {mode_score(m['name']):+.2f}" for m in MODES)
+            what = "keeping it, still the best overall" if MODE_IDX == prev else \
+                f"switching to {MODES[MODE_IDX]['name']}"
+            print(f"hand {hn}: {mode} at {lost:.0f}bb over {WINDOW} hands -> {what} (bb/hand: {scores})")
     LAST = (hn, start, c.bb)
 
 
@@ -507,6 +565,7 @@ def _process_hand(ents, me, short):
     sb = next((e["bot_id"] for e in ents if e["action"] == "small_blind"), None)
     acts = [e for e in ents if e["action"] in ("fold", "check", "call", "raise", "all_in")]
     street, level, cur_bet, pending, first = None, 0, 0, None, True
+    opp_aggr = opp_acts = 0
     for e in acts:
         if e["street"] != street:
             street, cur_bet, pending = e["street"], 0, None
@@ -525,6 +584,8 @@ def _process_hand(ents, me, short):
                 _rec("sb_jam_" + tag, a == "all_in")
             if street != "preflop":
                 _rec("post_aggr", aggr)
+                opp_aggr += 1 if aggr else 0
+                opp_acts += 1
         elif aggr:
             if street == "preflop":
                 pending = "jam" if a == "all_in" else ("open" if level == 0 else "3bet" if level == 1 else "4bet")
@@ -538,6 +599,50 @@ def _process_hand(ents, me, short):
             first = False
             if aggr:
                 level += 1
+    AGGR_HIST.append((opp_aggr, opp_acts))
+
+
+# ---- gear_shift: the counter to opponent-modelling bots ---------------------------
+# A bot that models us adjusts to what it has seen, with a lag. gear_shift uses
+# that lag. In "bait" it plays tight and passive after the flop (no bluffs, and
+# it believes their bets, so it folds marginal hands). A modelling bot reads that
+# as "folds too much" and starts bluffing more. Once their recent aggression is
+# clearly above what it was when gear_shift started, it "springs": calls down
+# light and traps strong hands while they bluff into it. When their aggression
+# drops back (their model caught up), it goes back to baiting.
+AGGR_HIST = []            # per finished hand: (their postflop bets/raises, their postflop actions)
+GEAR = {"phase": "bait", "baseline": None, "start": 0}
+GEAR_WINDOW = 12          # hands of recent aggression to compare with the baseline
+GEAR_MIN_ACTS = 6         # postflop actions needed in that window before it acts on it
+GEAR_SPRING_AT = 0.10     # spring when recent aggression >= baseline + this
+GEAR_RESET_AT = 0.03      # back to bait when it falls to baseline + this
+GEAR_PHASES = {
+    "bait":   dict(fe_mult=0.60, bluff_keep=0.15, sizes=(0.33, 0.66), bluffs=False, trap=0.00),
+    "spring": dict(fe_mult=0.80, bluff_keep=0.70, sizes=(0.66, 1.0),  bluffs=False, trap=0.45),
+}
+
+
+def gear_reset():
+    GEAR.update(phase="bait", baseline=None, start=len(AGGR_HIST))
+
+
+def gear_mode(base):
+    """The gear_shift mode's settings for this decision (bait or spring)."""
+    if GEAR["baseline"] is None:
+        GEAR["baseline"] = est("post_aggr", 0.35)
+        GEAR["start"] = len(AGGR_HIST)
+    recent = AGGR_HIST[max(GEAR["start"], len(AGGR_HIST) - GEAR_WINDOW):]
+    a, n = sum(x for x, _ in recent), sum(y for _, y in recent)
+    rate = a / n if n >= GEAR_MIN_ACTS else None
+    if rate is not None:
+        if GEAR["phase"] == "bait" and rate >= GEAR["baseline"] + GEAR_SPRING_AT:
+            GEAR["phase"] = "spring"
+        elif GEAR["phase"] == "spring" and rate <= GEAR["baseline"] + GEAR_RESET_AT:
+            GEAR["phase"] = "bait"
+    m = dict(base, **GEAR_PHASES[GEAR["phase"]])
+    m["gear"] = {"phase": GEAR["phase"], "baseline": round(GEAR["baseline"], 2),
+                 "recent": None if rate is None else round(rate, 2)}
+    return m
 
 
 # ---- per-mode ingredients -------------------------------------------------------
@@ -615,12 +720,34 @@ def decide(game_state: dict) -> dict:
 # THINK_LIMIT. If a decision runs long, it drops the active mode and finishes
 # with the main strategy (exploit, the default mode) instead.
 THINK_LIMIT = 0.200       # seconds per decision
+MC_SHARE = 0.35           # the Monte Carlo simulation gets what's left of 35% of it,
+                          # leaving room for slow machines and the half-core sandbox
 MAIN = MODES[0]           # the main strategy to fall back to
 FALLBACKS = 0             # how many decisions fell back this match
 
 
+RERAISE_BLUFF_KEEP = 0.5  # per re-raise: how much less often their range is a bluff
+RAISE_MARGIN = 0.03       # a raise must beat the passive line by 3% of the extra chips it risks
+
+
 def _elapsed(t0):
     return time.time() - t0
+
+
+def _opp_reraises(c):
+    """How many times this hand the opponent raised after we bet or raised on
+    the same postflop street."""
+    n = 0
+    for st in ("flop", "turn", "river"):
+        seq = [e for e in c.log if e["street"] == st]
+        ours = False
+        for e in seq:
+            if _aggressive(e, seq):
+                if e["bot_id"] == c.me:
+                    ours = True
+                elif ours:
+                    n += 1
+    return n
 
 
 def _decide(gs, t0):
@@ -629,11 +756,15 @@ def _decide(gs, t0):
     _EFF_BB.setdefault(gs["hand_num"], c.eff_bb)
     track_results(gs, c)
     mode = MODES[MODE_IDX]
+    if mode["name"] == "gear_shift":
+        mode = gear_mode(mode)
     owed, pot = gs["amount_owed"], gs["pot"]
     share = chip_share(gs, c)
     risk = risk_charge(share)                    # > 0 ahead (conservative), < 0 behind (aggressive)
     tag = {"mode": mode["name"], "window_bb": round(sum(RECENT), 1),
            "chip_share": round(share, 2), "risk": round(risk, 3)}
+    if "gear" in mode:
+        tag["gear"] = mode["gear"]
     fell_back = False
     if mode is not MAIN and _elapsed(t0) > 0.4 * THINK_LIMIT:   # already slow: go straight to main
         mode, fell_back = MAIN, True
@@ -654,9 +785,16 @@ def _decide(gs, t0):
         bluff_keep = min(max(0.1 + 0.9 * (est("post_aggr", 0.35) - 0.1), 0.08), 0.75)
     else:
         bluff_keep = mode["bluff_keep"]
+    # Raise wars: each time they re-raise one of our postflop bets, narrow their
+    # range twice as hard and believe it is a bluff half as often. A re-raise is
+    # far stronger than a first bet, and draws must not survive it.
+    reraises = _opp_reraises(c)
+    if reraises:
+        bluff_keep *= RERAISE_BLUFF_KEEP ** reraises
+        tag = {**tag, "opp_reraises": reraises}
     res = mc_equity(gs["your_cards"], gs["community_cards"], _opp_range(c, gs, mode),
-                    n_aggr=c.opp_post_aggr, n_calls=c.opp_post_calls, bluff_keep=bluff_keep,
-                    budget=max(0.01, 0.6 * THINK_LIMIT - _elapsed(t0)))
+                    n_aggr=c.opp_post_aggr + reraises, n_calls=c.opp_post_calls, bluff_keep=bluff_keep,
+                    budget=max(0.005, MC_SHARE * THINK_LIMIT - _elapsed(t0)))
     if mode is not MAIN and _elapsed(t0) > 0.8 * THINK_LIMIT:    # ran long: finish with main
         mode, fell_back = MAIN, True
     if fell_back:
@@ -695,7 +833,18 @@ def _decide(gs, t0):
             evs[("raise", total)] = fe * pot + (1 - fe) * (eq_c * (pot + add + opp_add) * r_c - add)
             evs[("raise", total)] -= risk * add * (1 - fe)    # chips are only at risk when called
 
-    best = max(evs, key=evs.get)
+    # Only build the pot when a raise clearly beats checking/calling: the EVs are
+    # estimates, so a raise must win by RAISE_MARGIN per extra chip it risks
+    # (more once they've re-raised), or we take the passive line.
+    margin = RAISE_MARGIN * (1 + reraises)
+
+    def score(k):
+        if not isinstance(k, tuple):
+            return evs[k]
+        extra = k[1] - gs["your_bet_this_street"] - owed      # chips beyond a call
+        return evs[k] - margin * max(extra, 0)
+
+    best = max(evs, key=score)
     dbg = {**tag, "eq": round(eq, 3), "think_ms": round(_elapsed(t0) * 1000),
            "ev": {str(k): round(v) for k, v in evs.items()}}
     if best in ("check", "fold", "call"):
