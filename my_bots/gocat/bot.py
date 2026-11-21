@@ -1,5 +1,5 @@
 """
-GO_CAT (team entry; the "cycler" strategy): switches between strategies,
+GOCAT (team entry; the "cycler" strategy): switches between strategies,
 keeping whichever one is winning.
 
 Every exploit leaves you open to a counter-exploit, and the counter to any
