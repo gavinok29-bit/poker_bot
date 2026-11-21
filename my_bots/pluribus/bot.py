@@ -433,6 +433,7 @@ class OppStats:
         self.opp_open = Rate()                 # they raise first in from the small blind
         self.fold_to_open = Rate()             # they fold when we open from the small blind
         self.fold_to_3bet = Rate()             # they fold when we 3-bet their open
+        self.lead_sizes = []                   # their first bets on a postflop street, as pot fractions (recent)
         self.sizes = []                        # (size fraction, made_pct) of bets they showed down
 
     def update(self, gs):
@@ -528,6 +529,8 @@ class OppStats:
                 add = amt - street_bet.get(who, 0)
                 if aggressive and post and opp:
                     opp_bets.append((st, (amt - cur_bet) / max(pot, 1)))
+                    if cur_bet == 0 and a == "raise":
+                        self.lead_sizes = (self.lead_sizes + [amt / max(pot, 1)])[-12:]
                 pot += max(add, 0)
                 street_bet[who] = amt
                 cur_bet = max(cur_bet, amt)

@@ -18,13 +18,19 @@ current mode.
 
 Postflop it won't get into raise wars with draws: each re-raise from the
 opponent narrows their range twice as hard, and a raise must beat calling by a
-margin per extra chip risked (the EVs are estimates), or it just calls. The active mode and its running total are
+margin per extra chip risked (the EVs are estimates), or it just calls.
+
+It also reads how honest the opponent is: if their big bets keep winning at
+showdown, it believes their bets more (folds medium hands to them), counts only
+the folds they've actually shown to big bets as fold equity, rules out pressure
+and bluff_catch, and doesn't jam deep stacks into small pots. The active mode and its running total are
 in every decision's "debug".
 
 All modes share one engine: Monte Carlo equity against the opponent's range,
 then the highest-EV action. The modes differ in what they assume about the
-opponent: fold frequency, how often their bets are bluffs, bet sizes, whether
-bluffing is allowed, and how often to trap.
+opponent: fold frequency, how often their bets are bluffs, whether bluffing is
+allowed, and how often to trap. Every mode bets from the same sizes, so a bet's
+size doesn't reveal the mode.
 
 On top of the active mode it scales risk with the chip count: ahead in the
 match it plays more conservatively to protect the lead, behind it takes more
@@ -396,7 +402,7 @@ def bet_pot_frac(gs, c, frac):
 # exploit / counter-exploit cycle:
 #   exploit      DEFAULT. Best response to the opponent's measured frequencies
 #                (beats counter_nash, which is itself an exploiter)
-#   pressure     vs over-folders: bluff more, bet bigger
+#   pressure     vs over-folders: bluff more, expect more folds
 #   value        vs calling stations: value-bet thin and big, never bluff
 #   bluff_catch  vs over-aggressive bots: believe their bets less, call down
 #                lighter, trap strong hands by checking
@@ -410,13 +416,18 @@ def bet_pot_frac(gs, c, frac):
 # shoves far wider than equilibrium.
 from collections import defaultdict
 
+# Every mode bets from the same sizes (pot fractions), so the size of a bet
+# never tells the opponent which mode is active. Modes still differ in how
+# often they pick each size, since each mode values the outcomes differently.
+BET_SIZES = (0.33, 0.66, 1.0, 1.5)
+
 MODES = [
-    dict(name="exploit",     use_model=True,  fe_mult=1.00, bluff_keep=None, sizes=(0.33, 0.66, 1.0),  bluffs=True,  trap=0.00),
-    dict(name="pressure",    use_model=True,  fe_mult=1.30, bluff_keep=0.30, sizes=(0.5, 0.75, 1.25),  bluffs=True,  trap=0.00),
-    dict(name="value",       use_model=True,  fe_mult=0.50, bluff_keep=0.30, sizes=(0.66, 1.0, 1.5),   bluffs=False, trap=0.00),
-    dict(name="bluff_catch", use_model=True,  fe_mult=0.80, bluff_keep=0.65, sizes=(0.33, 0.66),       bluffs=False, trap=0.35),
-    dict(name="gear_shift",  use_model=True,  fe_mult=0.60, bluff_keep=0.15, sizes=(0.33, 0.66),       bluffs=False, trap=0.00),
-    dict(name="gto",         use_model=False, fe_mult=1.00, bluff_keep=0.30, sizes=(0.33, 0.66, 1.0),  bluffs=True,  trap=0.00),
+    dict(name="exploit",     use_model=True,  fe_mult=1.00, bluff_keep=None, sizes=BET_SIZES, bluffs=True,  trap=0.00),
+    dict(name="pressure",    use_model=True,  fe_mult=1.30, bluff_keep=0.30, sizes=BET_SIZES, bluffs=True,  trap=0.00),
+    dict(name="value",       use_model=True,  fe_mult=0.50, bluff_keep=0.30, sizes=BET_SIZES, bluffs=False, trap=0.00),
+    dict(name="bluff_catch", use_model=True,  fe_mult=0.80, bluff_keep=0.65, sizes=BET_SIZES, bluffs=False, trap=0.35),
+    dict(name="gear_shift",  use_model=True,  fe_mult=0.60, bluff_keep=0.15, sizes=BET_SIZES, bluffs=False, trap=0.00),
+    dict(name="gto",         use_model=False, fe_mult=1.00, bluff_keep=0.30, sizes=BET_SIZES, bluffs=True,  trap=0.00),
 ]
 WINDOW = 15               # hands a mode is judged over (rolling)
 SWITCH_BELOW_BB = -8.0    # switch when the last WINDOW hands lost more than this many big blinds
@@ -477,15 +488,24 @@ def mode_score(name):
 BLUFF_CATCH_MIN_AGGR = 0.40   # only try bluff_catch against bots that bet/raise this often postflop
 
 
+PRESSURE_MIN_BIG_FOLD = 0.25  # pressure needs them to fold at least this often to big bets
+HONEST_AT = 0.75              # their big bets win at showdown this often: treat them as honest
+JAM_MAX_SPR = 3.0             # postflop jam allowed facing a bet only if stacks <= this many pots
+
+
 def mode_allowed(m):
     """bluff_catch assumes they bluff a lot; against a bot that rarely bets
-    (like Nash) it just pays off value bets, so it needs evidence first."""
+    (like Nash) it just pays off value bets, so it needs evidence first.
+    pressure assumes they fold to big bets; against a bot that calls big bets
+    with strong hands and only bets big with strong hands it just burns chips."""
     if m["name"] == "bluff_catch":
-        return est("post_aggr", 0.35) >= BLUFF_CATCH_MIN_AGGR
+        return est("post_aggr", 0.35) >= BLUFF_CATCH_MIN_AGGR and est("big_honest", 0.6) < HONEST_AT
+    if m["name"] == "pressure":
+        return est("bigbet_fold", 0.35) >= PRESSURE_MIN_BIG_FOLD and est("big_honest", 0.6) < HONEST_AT
     return True
 
 
-def pick_next_mode(cur):
+def pick_next_mode(cur, force=False):
     """After a bad stretch: if the current mode still has the best whole-match
     record and is winning overall, the stretch was bad luck, so keep it.
     Otherwise jump to the best-scoring other mode. A mode that hasn't been
@@ -498,7 +518,7 @@ def pick_next_mode(cur):
         return cur
     best = max(order, key=lambda i: (mode_score(MODES[i]["name"]), -order.index(i)))
     cur_score = mode_score(MODES[cur]["name"])
-    if cur_score > 0 and cur_score >= mode_score(MODES[best]["name"]):
+    if not force and cur_score > 0 and cur_score >= mode_score(MODES[best]["name"]):
         return cur
     return best
 
@@ -515,6 +535,8 @@ def track_results(gs, c):
         return
     if LAST is not None:
         won_bb = (start - LAST[1]) / max(LAST[2], 1)
+        HAND_RESULT[LAST[0]] = won_bb
+        resolve_honesty()
         mode = MODES[MODE_IDX]["name"]
         MODE_LOG[mode][0] += 1
         MODE_LOG[mode][1] += won_bb
@@ -531,6 +553,15 @@ def track_results(gs, c):
             what = "keeping it, still the best overall" if MODE_IDX == prev else \
                 f"switching to {MODES[MODE_IDX]['name']}"
             print(f"hand {hn}: {mode} at {lost:.0f}bb over {WINDOW} hands -> {what} (bb/hand: {scores})")
+        if not mode_allowed(MODES[MODE_IDX]):     # evidence now rules this mode out: leave at once
+            prev = MODE_IDX
+            MODE_IDX = pick_next_mode(MODE_IDX, force=True)
+            if MODE_IDX != prev:
+                RECENT = []
+                if MODES[MODE_IDX]["name"] == "gear_shift":
+                    gear_reset()
+                print(f"hand {hn}: {MODES[prev]['name']} ruled out by the opponent's tendencies "
+                      f"-> switching to {MODES[MODE_IDX]['name']}")
     LAST = (hn, start, c.bb)
 
 
@@ -558,26 +589,65 @@ def update_model(gs):
         _SEEN.add(hn)
         ents = hands[hn]
         if any(e["action"] == "big_blind" for e in ents):
-            _process_hand(ents, me, _EFF_BB.get(hn, 30.0) <= PUSH_FOLD_BB)
+            _process_hand(hn, ents, me, _EFF_BB.get(hn, 30.0) <= PUSH_FOLD_BB)
 
 
-def _process_hand(ents, me, short):
+# Honesty: when they bet big after the flop and the hand goes to showdown, do
+# they turn up with the best hand? A bot that only bets big with strong hands
+# (and only calls big bets with strong hands) should get no bluffs from us and
+# no hero calls. Resolved once the hand's result is known (track_results).
+PENDING_HONEST = []       # hands where they bet/raised big postflop and showed down
+HAND_RESULT = {}          # hand_num -> big blinds we won
+BIG_BET = 0.75            # a bet of at least this share of the pot counts as big
+
+
+def resolve_honesty():
+    for hn in list(PENDING_HONEST):
+        if hn in HAND_RESULT:
+            _rec("big_honest", HAND_RESULT[hn] < 0)     # their big bet beat us at showdown
+            PENDING_HONEST.remove(hn)
+
+
+def _process_hand(hn, ents, me, short):
     sb = next((e["bot_id"] for e in ents if e["action"] == "small_blind"), None)
-    acts = [e for e in ents if e["action"] in ("fold", "check", "call", "raise", "all_in")]
-    street, level, cur_bet, pending, first = None, 0, 0, None, True
+    street, level, cur_bet, pending, first = None, 0, 0, [], True
     opp_aggr = opp_acts = 0
-    for e in acts:
+    pot, sbet = 0, {}
+    opp_big, opp_shown = False, False
+    for e in ents:
+        a, who, amt = e["action"], e.get("bot_id"), e.get("amount", 0) or 0
+        if a == "show":
+            opp_shown = opp_shown or who != me
+            continue
         if e["street"] != street:
-            street, cur_bet, pending = e["street"], 0, None
-        a = e["action"]
-        aggr = a == "raise" or (a == "all_in" and e.get("amount", 0) > cur_bet)
+            street, cur_bet, pending, sbet = e["street"], 0, [], {}
+        if a in ("small_blind", "big_blind", "ante"):
+            pot += amt
+            if a != "ante":
+                sbet[who] = sbet.get(who, 0) + amt
+                cur_bet = max(cur_bet, sbet[who])
+            continue
+        if a not in ("fold", "check", "call", "raise", "all_in"):
+            continue
+        aggr = a == "raise" or (a == "all_in" and amt > cur_bet)
+        size = (amt - cur_bet) / max(pot, 1) if aggr else 0.0
+        big = aggr and (a == "all_in" or size >= BIG_BET or cur_bet > 0)   # jam, big bet or re-raise
+        # chips into the pot
+        if a == "call":
+            pot += amt
+            sbet[who] = sbet.get(who, 0) + amt
+        elif a in ("raise", "all_in"):
+            pot += max(amt - sbet.get(who, 0), 0)
+            sbet[who] = max(sbet.get(who, 0), amt)
         if aggr:
-            cur_bet = max(cur_bet, e.get("amount", 0))
-        if e["bot_id"] != me:
-            if pending:
-                _rec(pending + "_fold", a == "fold")
-                _rec(pending + "_raise", aggr)
-                pending = None
+            cur_bet = max(cur_bet, amt)
+        if who != me and street != "preflop" and big:
+            opp_big = True
+        if who != me:
+            for p in pending:
+                _rec(p + "_fold", a == "fold")
+                _rec(p + "_raise", aggr)
+            pending = []
             if street == "preflop" and first and e["bot_id"] == sb:
                 tag = "short" if short else "deep"
                 _rec("sb_open_" + tag, aggr)
@@ -588,18 +658,21 @@ def _process_hand(ents, me, short):
                 opp_acts += 1
         elif aggr:
             if street == "preflop":
-                pending = "jam" if a == "all_in" else ("open" if level == 0 else "3bet" if level == 1 else "4bet")
-                if pending == "jam":
-                    pending += "_short" if short else "_deep"
+                p = "jam" if a == "all_in" else ("open" if level == 0 else "3bet" if level == 1 else "4bet")
+                if p == "jam":
+                    p += "_short" if short else "_deep"
+                pending = [p]
             else:
-                pending = "bet"
-        elif street == "preflop" and first and a == "call" and e["bot_id"] == sb:
-            pending = "limp"                          # we limped: does the BB punish it?
+                pending = ["bet", "bigbet"] if big else ["bet"]
+        elif street == "preflop" and first and a == "call" and who == sb:
+            pending = ["limp"]                        # we limped: does the BB punish it?
         if street == "preflop":
             first = False
             if aggr:
                 level += 1
     AGGR_HIST.append((opp_aggr, opp_acts))
+    if opp_big and opp_shown:
+        PENDING_HONEST.append(hn)
 
 
 # ---- gear_shift: the counter to opponent-modelling bots ---------------------------
@@ -617,8 +690,8 @@ GEAR_MIN_ACTS = 6         # postflop actions needed in that window before it act
 GEAR_SPRING_AT = 0.10     # spring when recent aggression >= baseline + this
 GEAR_RESET_AT = 0.03      # back to bait when it falls to baseline + this
 GEAR_PHASES = {
-    "bait":   dict(fe_mult=0.60, bluff_keep=0.15, sizes=(0.33, 0.66), bluffs=False, trap=0.00),
-    "spring": dict(fe_mult=0.80, bluff_keep=0.70, sizes=(0.66, 1.0),  bluffs=False, trap=0.45),
+    "bait":   dict(fe_mult=0.60, bluff_keep=0.15, sizes=BET_SIZES, bluffs=False, trap=0.00),
+    "spring": dict(fe_mult=0.80, bluff_keep=0.70, sizes=BET_SIZES, bluffs=False, trap=0.45),
 }
 
 
@@ -677,9 +750,14 @@ def _fold_prob(c, pot_before, call_amt, jam, mode):
         else:
             key = "open" if c.pf_raises == 0 else "3bet" if c.pf_raises == 1 else "4bet"
             f = get(key + "_fold", mdf_fold)
+    elif jam or r >= BIG_BET:
+        f = get("bigbet_fold", mdf_fold)      # big bets: what they actually fold to big bets
     else:
         f = get("bet_fold", 0.40) * mdf_fold / 0.37
-    return min(max(f * mode["fe_mult"], 0.02), 0.95)
+    # A jam's fold equity is what they've shown; modes that assume extra folds
+    # (pressure) don't get to inflate it, since a called jam risks the stack.
+    mult = min(mode["fe_mult"], 1.0) if jam else mode["fe_mult"]
+    return min(max(f * mult, 0.02), 0.95)
 
 
 def candidate_raises(gs, c, mode, behind=False):
@@ -691,7 +769,9 @@ def candidate_raises(gs, c, mode, behind=False):
             out.append(c.my_max)
     else:
         out += [bet_pot_frac(gs, c, f) for f in mode["sizes"]]
-        if c.eff <= 1.6 * pot or gs["current_bet"] > 0:
+        # Jam only when it isn't a huge overbet: deep stacks into a small pot get
+        # called only by hands that beat us.
+        if c.eff <= 1.6 * pot or (gs["current_bet"] > 0 and c.eff <= JAM_MAX_SPR * pot):
             out.append(c.my_max)
     seen, res = set(), []
     for t in out:
@@ -792,6 +872,12 @@ def _decide(gs, t0):
     if reraises:
         bluff_keep *= RERAISE_BLUFF_KEEP ** reraises
         tag = {**tag, "opp_reraises": reraises}
+    # Honest opponents: if their big bets keep winning at showdown, believe their
+    # bets more (whatever the mode assumes), so medium hands fold to them.
+    honest = est("big_honest", 0.6)
+    if honest > 0.6:
+        bluff_keep *= max(0.25, (1 - honest) / 0.4)
+        tag = {**tag, "honest": round(honest, 2)}
     res = mc_equity(gs["your_cards"], gs["community_cards"], _opp_range(c, gs, mode),
                     n_aggr=c.opp_post_aggr + reraises, n_calls=c.opp_post_calls, bluff_keep=bluff_keep,
                     budget=max(0.005, MC_SHARE * THINK_LIMIT - _elapsed(t0)))
