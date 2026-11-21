@@ -432,6 +432,9 @@ class OppStats:
         self.cbet = Rate()                     # they bet the flop after raising preflop
         self.fold_to_flop_raise = Rate()       # they fold when we raise their flop bet
         self.we_fold_by_size = {"small": Rate(), "big": Rate(), "over": Rate()}
+        self.opp_open = Rate()                 # they raise first in from the small blind
+        self.fold_to_open = Rate()             # they fold when we open from the small blind
+        self.fold_to_3bet = Rate()             # they fold when we 3-bet their open
         self.sizes = []                        # (size fraction, made_pct) of bets they showed down
 
     def update(self, gs):
@@ -467,6 +470,7 @@ class OppStats:
         opp_flop_bet = False
         we_raised_flop_bet = False
         shown = None
+        pf_first, pf_pending, pf_level = None, None, 0
         for e in entries:
             a, who, amt, st = e["action"], e.get("bot_id"), e.get("amount", 0) or 0, e.get("street")
             opp = who != me
@@ -486,6 +490,19 @@ class OppStats:
                 continue
             post = st != "preflop"
             aggressive = a == "raise" or (a == "all_in" and amt > cur_bet)
+            if not post:                                  # preflop tendencies
+                if pf_first is None:
+                    pf_first = who
+                    if opp:
+                        self.opp_open.add(aggressive)
+                if opp and pf_pending:
+                    (self.fold_to_open if pf_pending == "open" else self.fold_to_3bet).add(a == "fold")
+                    pf_pending = None
+                if not opp and aggressive:
+                    pf_pending = ("open" if pf_first == me else None) if pf_level == 0 else \
+                        "3bet" if pf_level == 1 else None
+                if aggressive:
+                    pf_level += 1
             if post and opp and last_aggr_by_us.get(st):
                 self.fold_to_bet.add(a == "fold")
                 self.raise_vs_bet.add(aggressive)

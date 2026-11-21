@@ -8,6 +8,12 @@ seats swapped). Winning both matches wins the pairing, one each is a draw.
     python3 tools/winrate.py my_bots/monte_carlo my_bots/nash --pairs 100 --jobs 4
     python3 tools/winrate.py my_bots/counter_nash bots/caller --seed 1      # reproducible
     python3 tools/winrate.py A B --mode fixed --hands 500                   # chips won instead
+    python3 tools/winrate.py A B --time-limit-ms 200                        # a stricter clock
+
+Every decision runs on the clock: the tournament's 2,000 ms unless you pass
+--time-limit-ms. A decision over the limit is a timeout, and the bot folds that
+hand, exactly as in the tournament. The summary lists each bot's timeouts,
+errors and slowest decision.
 
 Run it from the repo root. A running tally prints after every pair.
 """
@@ -39,14 +45,17 @@ def play_one(a_path, b_path, a_name, b_name, seed, args):
     from pokercore.seeds import derive_seed
     from pokercore.table import MatchConfig, play_match
 
+    limit = getattr(args, "time_limit_ms", None)          # None = the tournament's 2,000 ms
     bots = [play.Bot(a_name, a_path), play.Bot(b_name, b_path)]
     config = MatchConfig(mode=args.mode, hands=args.hands, starting_stack=args.stack,
                          structure=structures.parse(args.blinds, args.stack), seed=seed,
-                         time_limit_ms=None)
-    seats = [BotSeat(b, seed=derive_seed(seed, "bot", b.name), use_docker=args.docker) for b in bots]
+                         time_limit_ms=limit)
+    seats = [BotSeat(b, seed=derive_seed(seed, "bot", b.name), time_limit_ms=limit, use_docker=args.docker)
+             for b in bots]
     result = play_match(seats, config, "local", play.Log())
     delta = {r["bot"]: r["delta"] for r in result["results"]}
-    problems = {r["bot"]: sum(r.get(k) or 0 for k in ("timeouts", "errors")) for r in result["results"]}
+    problems = {r["bot"]: {"timeouts": r.get("timeouts") or 0, "errors": r.get("errors") or 0,
+                           "max_ms": r.get("max_think_ms") or 0.0} for r in result["results"]}
     return delta, result["hands"], problems
 
 
@@ -54,7 +63,17 @@ def play_pair(a_path, b_path, a_name, b_name, seed, args):
     """Duplicate pair: same seed, seats swapped."""
     d1, h1, p1 = play_one(a_path, b_path, a_name, b_name, seed, args)
     d2, h2, p2 = play_one(b_path, a_path, b_name, a_name, seed, args)
-    return seed, [d1[a_name], d2[a_name]], h1 + h2, {k: p1.get(k, 0) + p2.get(k, 0) for k in (a_name, b_name)}
+    return seed, [d1[a_name], d2[a_name]], h1 + h2, {k: _merge(p1.get(k), p2.get(k)) for k in (a_name, b_name)}
+
+
+def _merge(*ps):
+    out = {"timeouts": 0, "errors": 0, "max_ms": 0.0}
+    for p in ps:
+        if p:
+            out["timeouts"] += p["timeouts"]
+            out["errors"] += p["errors"]
+            out["max_ms"] = max(out["max_ms"], p["max_ms"])
+    return out
 
 
 def ci95(wins, n):
@@ -80,6 +99,8 @@ def main():
     p.add_argument("--blinds", default="standard")
     p.add_argument("--stack", type=int, default=10_000)
     p.add_argument("--docker", action="store_true")
+    p.add_argument("--time-limit-ms", type=int, default=None,
+                   help="per-decision clock; over it the bot times out and folds (default: 2000, the tournament's)")
     args = p.parse_args()
 
     os.chdir(ROOT)
@@ -88,11 +109,11 @@ def main():
         b_name += "_2"
     seed0 = args.seed if args.seed is not None else int.from_bytes(os.urandom(4), "big") % 1_000_000_000
     print(f"{a_name} vs {b_name}: {args.pairs} duplicate pairs, {args.mode}, blinds {args.blinds}, "
-          f"first seed {seed0}, {args.jobs} jobs\n")
+          f"first seed {seed0}, {args.jobs} jobs, clock {args.time_limit_ms or 2000} ms\n")
 
     match_w = match_l = 0
     pair_w = pair_d = pair_l = 0
-    chips, hands, probs = 0, 0, {a_name: 0, b_name: 0}
+    chips, hands, probs = 0, 0, {a_name: _merge(), b_name: _merge()}
     t0 = time.time()
     with ProcessPoolExecutor(max_workers=args.jobs) as ex:
         futs = [ex.submit(play_pair, args.bot_a, args.bot_b, a_name, b_name, seed0 + i, args)
@@ -116,7 +137,7 @@ def main():
             chips += sum(deltas)
             hands += h
             for k in probs:
-                probs[k] += pr.get(k, 0)
+                probs[k] = _merge(probs[k], pr.get(k))
             played = match_w + match_l
             rate = match_w / played if played else 0
             print(f"[{n:>3}/{args.pairs}] seed {seed}: {' / '.join(f'{d:+,}' for d in deltas):>21}  |  "
@@ -133,8 +154,8 @@ def main():
         print(f"  chips won      : {chips:+,} total, {chips / max(hands, 1) * 100:+.0f} per 100 hands")
     else:
         print(f"  avg match      : {hands / max(2 * pairs, 1):.0f} hands")
-    if any(probs.values()):
-        print(f"  timeouts+errors: {probs}")
+    for k, v in probs.items():
+        print(f"  {k:<15}: {v['timeouts']} timeouts, {v['errors']} errors, slowest decision {v['max_ms']:.0f} ms")
 
 
 if __name__ == "__main__":

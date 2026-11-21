@@ -8,6 +8,7 @@ and copies data/equity169.npy next to it. leaks.py holds the five sparring
 bots, separated by "### <name>" lines.
 
     python3 tools/build_strategy_bots.py          # rebuild all of them
+    python3 tools/build_strategy_bots.py tracker  # just one
 """
 import os, shutil, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,7 +32,10 @@ for f in sorted(os.listdir(S)):
             srcs[name.strip()] = body
     else:
         srcs[f[:-3]] = text
+only = set(sys.argv[1:])                     # optional: build just these bots
 for name, text in srcs.items():
+    if only and name not in only:
+        continue
     doc, code = text.split('"""(end of description)"""\n', 1)
     out = doc.rstrip() + "\n" + IMPORTS + toolkit + helpers.strip() + "\n\n\n# " + "=" * 74 + "\n# " + name.upper() + " STRATEGY\n\n" + code.strip() + "\n"
     d = os.path.join(ROOT, "my_bots", name)
